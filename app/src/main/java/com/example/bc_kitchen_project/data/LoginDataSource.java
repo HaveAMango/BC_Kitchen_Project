@@ -4,20 +4,23 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 public class LoginDataSource {
+
+    private Map<String, String> userCache = new HashMap<>();
 
     public LoginDataSource() {
         Log.i("login", "Init DataSource");
@@ -26,7 +29,14 @@ public class LoginDataSource {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("login", "snapshot: " + snapshot);
+                //fill cache
+                for (DataSnapshot user : snapshot.getChildren()) {
+                    String username = user.child("name").getValue().toString();
+                    String password = user.child("password").getValue().toString();
+
+                    Log.d("login", "Added user: " + username + "-" + password);
+                    userCache.put(username, password);
+                }
             }
 
             @Override
@@ -37,18 +47,21 @@ public class LoginDataSource {
     }
 
     public Result<LoggedInUser> login(String username, String password) {
-
-        try {
-
-            // TODO: handle loggedInUser authentication
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
-            return new Result.Success<>(fakeUser);
-        } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
+        if (!userCache.containsKey(username)) {
+            Log.e("login", "User not found:" + username);
+            return new Result.Error(new LoginException(R.string.login_failure_no_user));
         }
+
+        String realPassword = userCache.get(username);
+        if (!password.equals(realPassword)) {
+            Log.e("login", "Invalid password for user:" + username +
+                    " - Expected: " + realPassword + " actual: " + password);
+            return new Result.Error(new LoginException(R.string.login_failure_invalid_password));
+        }
+
+        Log.i("login", "Login successfull: " + username);
+        LoggedInUser user = new LoggedInUser(username, username);
+        return new Result.Success<>(user);
     }
 
     public void logout() {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
+import com.example.bc_kitchen_project.data.LoginException;
 import com.example.bc_kitchen_project.data.LoginRepository;
 import com.example.bc_kitchen_project.data.Result;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
@@ -37,7 +38,9 @@ public class LoginViewModel extends ViewModel {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
         } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            Result.Error errorResult = (Result.Error) result;
+            LoginException loginException = (LoginException) errorResult.getError();
+            loginResult.setValue(new LoginResult(loginException.getErrorCode()));
         }
     }
 
@@ -65,6 +68,6 @@ public class LoginViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null;// && password.trim().length() > 5;
     }
 }

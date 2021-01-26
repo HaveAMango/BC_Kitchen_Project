@@ -1,12 +1,12 @@
 package com.example.bc_kitchen_project;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
