@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bc_kitchen_project.ui.login.LoginActivity;
+import com.example.bc_kitchen_project.findRecipe.FindRecipe;
 import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        String findRecipe;
+        Intent intent = new Intent(this, FindRecipe.class);
         startActivity(intent);
     }
 }
