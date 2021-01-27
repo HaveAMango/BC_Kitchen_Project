@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bc_kitchen_project.home.HomeActivity;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.FirebaseApp;
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }
