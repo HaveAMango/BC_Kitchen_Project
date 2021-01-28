@@ -41,26 +41,28 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_fridge:
                 Toast.makeText(this, "Fridge button clicked", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent (this, Fridge.class);
-                startActivity(intent);
+                //Intent intent = new Intent (this, Fridge.class);
+                startActivity(new Intent (this, Fridge.class));
                 break;
             case R.id.btn_pantry:
                 Toast.makeText(this, "Pantry button clicked", Toast.LENGTH_SHORT).show();
-
+                //startActivity(new Intent (this, Pantry.class));
                 break;
             case R.id.btn_recipes:
                 Toast.makeText(this, "Recipes button clicked", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent (this, Recipes.class));
                 break;
             case R.id.btn_groceries:
                 Toast.makeText(this, "Groceries button clicked", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent (this, Groceries.class));
                 break;
             case R.id.btn_settings:
                 Toast.makeText(this, "Settings button clicked", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent (this, Settings.class));
                 break;
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
-                Intent intentHelp = new Intent (this, Help.class);
-                startActivity(intentHelp);
+                startActivity(new Intent (this, Help.class));
                 break;
             default:
                 break;
