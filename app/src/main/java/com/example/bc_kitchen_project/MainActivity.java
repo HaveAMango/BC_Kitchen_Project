@@ -1,6 +1,5 @@
 package com.example.bc_kitchen_project;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,9 +22,15 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         instance = this;
 
+        //Trigger LoginDataSource initialization
+        LoginRepository.getInstance();
+    }
+
+    public static void onLoginHandled() {
+        LoginRepository.getInstance().loadCachedUser();
         if (!LoginRepository.getInstance().isLoggedIn()) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
+            Intent intent = new Intent(instance, WelcomeActivity.class);
+            instance.startActivity(intent);
         }
     }
 

@@ -32,7 +32,6 @@ public class LoginRepository {
     // private constructor : singleton access
     private LoginRepository(LoginDataSource dataSource) {
         this.dataSource = dataSource;
-        loadUserCache();
     }
 
     public static LoginRepository getInstance() {
@@ -51,7 +50,7 @@ public class LoginRepository {
         dataSource.logout();
     }
 
-    private void loadUserCache() {
+    public void loadCachedUser() {
         Log.i("user-cache", "Load user cache");
         if (userCacheExists()) {
             Log.i("user-cache", "Load user cache, cache file exists - read");

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +42,7 @@ public class LoginDataSource {
                 }
 
                 //try to login using user cache now
+                MainActivity.onLoginHandled();
             }
 
             @Override
