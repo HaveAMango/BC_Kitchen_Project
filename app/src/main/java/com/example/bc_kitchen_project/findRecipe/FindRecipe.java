@@ -4,50 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bc_kitchen_project.R;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FindRecipe extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "FindRecipe";
+    Button findRecButton;
+    TextInputLayout inputText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_recipe);
-        Log.d(TAG, "workening");
-        Button findRecButton = (Button)findViewById(R.id.findRecipeButton);
+        findRecButton = (Button) findViewById(R.id.findRecipeButton); //Initializing Button and InputField
+        inputText = (TextInputLayout) findViewById(R.id.findRecipeInput);
         findRecButton.setOnClickListener(this);
-
-    }
-
-    void connect(){
-        Uri uriUrl = Uri.parse("http://google.com/");
-        //Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-        Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
-        search.putExtra(SearchManager.QUERY, "eggs");
-        startActivity(search);
     }
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "Finde Recipe clicked", Toast.LENGTH_LONG).show();
-        connect();
+        Toast.makeText(this, "Finding Recipies...", Toast.LENGTH_LONG).show();
+        String ingredients = inputText.getEditText().getText().toString(); //Gets text from InputField
+        connect(ingredients);
+    }
 
+    //Makes connection to Google search with given ingredients
+    void connect(String ingredients) {
+        //Uri uriUrl = Uri.parse("http://google.com/"); //##These two commented lines are for "JUST IN CASE" if something
+        //Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl); //##similar will have to be done
+        Intent search = new Intent(Intent.ACTION_WEB_SEARCH); //Makes new Google search window
+        search.putExtra(SearchManager.QUERY, (ingredients + " recipe")); //Makes search text/query
+        startActivity(search);
     }
 }
