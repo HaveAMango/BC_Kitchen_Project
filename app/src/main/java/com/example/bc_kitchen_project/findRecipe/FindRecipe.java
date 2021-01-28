@@ -28,17 +28,21 @@ public class FindRecipe extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "Finding Recipies...", Toast.LENGTH_LONG).show();
         String ingredients = inputText.getEditText().getText().toString(); //Gets text from InputField
-        connect(ingredients);
+        if ("".equals(ingredients.trim())) { //Checks if user entered any value
+            Toast.makeText(this, "You did not enter any ingredients", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Finding Recipies...", Toast.LENGTH_LONG).show();
+            findRecipe(ingredients);
+        }
     }
 
     //Makes connection to Google search with given ingredients
-    void connect(String ingredients) {
+    void findRecipe(String ingredients) {
         //Uri uriUrl = Uri.parse("http://google.com/"); //##These two commented lines are for "JUST IN CASE" if something
         //Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl); //##similar will have to be done
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH); //Makes new Google search window
-        search.putExtra(SearchManager.QUERY, (ingredients + " recipe")); //Makes search text/query
+        search.putExtra(SearchManager.QUERY, (ingredients.trim() + " recipe")); //Makes search text/query
         startActivity(search);
     }
 }
