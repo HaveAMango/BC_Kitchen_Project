@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.ui.login.Fridge;
 
@@ -58,6 +59,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
+                Intent intentHelp = new Intent (this, Help.class);
+                startActivity(intentHelp);
                 break;
             default:
                 break;

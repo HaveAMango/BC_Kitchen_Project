@@ -21,5 +21,28 @@
 
     <string name="exp_date">Expiration date</string>
 
+    <string name="help_introduction">This application allows you to track your food supplies in your fridge and in your pantry. You will keep an eye on expiration dates of your products and add necessary items to your grocery list.</string>
+    <string name="introduction">Introduction</string>
+    <string name="help_fridge">
+        <li>You can add your fridge items here. For each product you can specify the expiration day and the total amount of the product in the fridge.</li>
+        <li>You can visually see the expiration dates for your products: if the product is going to be expired soon, it will be colored yellow; If the product
+                has expired, if will be colored red.</li>
+        <li>You can copy/add any item from your fridge to the grocery list.</li>
+    </string>
+    <string name="help_pantry">
+        <li>You can add your pantry items here. For each product you can specify the expiration day and the total amount of the product in your pantry.</li><br/>
+        <li>You can visually see the expiration dates for your products: if the product is going to be expired soon, it will be colored yellow; If the product
+                has expired already, if will be colored red.</li><br/>
+        <li>You can copy/add any item from your pantry to the grocery list.</li>
+    </string>
+    <string name="help_grocery_list">
+        <li>You can add your grocery items seperately in the grocery list or you can copy them from the fridge or pantry.</li>
+        <li>You can check the item you have purchased - it will change the appearance of this item.</li>
+        <li>You can move the item from the shopping list to the fridge or pantry???</li>
+    </string>
+    <string name="help_settings">
+        <li><tab/>In the settings you can modify the theme for the application - orange (default) and day/night.</li>
+    </string>
+
 
 </resources>
