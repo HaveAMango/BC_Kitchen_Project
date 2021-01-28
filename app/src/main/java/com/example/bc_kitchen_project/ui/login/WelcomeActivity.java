@@ -2,6 +2,7 @@ package com.example.bc_kitchen_project.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -21,6 +22,9 @@ public class WelcomeActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+
+            setResult(Activity.RESULT_OK);
+            finish();
         });
     }
 }

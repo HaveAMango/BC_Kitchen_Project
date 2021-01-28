@@ -39,6 +39,8 @@ public class LoginDataSource {
                     Log.d("login", "Added user: " + username + "-" + password);
                     userCache.put(username, password);
                 }
+
+                //try to login using user cache now
             }
 
             @Override
