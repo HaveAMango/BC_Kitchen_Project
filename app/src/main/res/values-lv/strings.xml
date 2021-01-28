@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BC_Kitchen_Project</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -12,12 +13,12 @@
     <string name="login_failure_no_user">User not found</string>
     <string name="login_failure_invalid_password">Invalid password</string>
 
-    <string name="fridge">Fridge</string>
-    <string name="pantry">Pantry</string>
-    <string name="recipes">Recipes</string>
-    <string name="grocery_list">Groceries</string>
-    <string name="settings">Settings</string>
-    <string name="help">Help</string>
+    <string name="fridge">Ledusskapis</string>
+    <string name="pantry">Noliktava</string>
+    <string name="recipes">Receptes</string>
+    <string name="grocery_list">Iepirkumi</string>
+    <string name="settings">Iestatījumi</string>
+    <string name="help">Palīgā!</string>
 
     <string name="exp_date">Expiration date</string>
 

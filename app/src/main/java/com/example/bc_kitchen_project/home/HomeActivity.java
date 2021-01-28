@@ -2,7 +2,6 @@ package com.example.bc_kitchen_project.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,8 @@ import android.widget.Toast;
 
 import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
-import com.example.bc_kitchen_project.ui.login.Fridge;
+import com.example.bc_kitchen_project.Fridge;
+import com.example.bc_kitchen_project.Settings;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_settings:
                 Toast.makeText(this, "Settings button clicked", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (this, Settings.class));
+                startActivity(new Intent (this, Settings.class));
                 break;
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
