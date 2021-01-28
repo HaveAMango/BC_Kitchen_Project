@@ -1,5 +1,8 @@
 package com.example.bc_kitchen_project.data;
 
+import android.content.Context;
+
+import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
 
 /**
@@ -19,11 +22,12 @@ public class LoginRepository {
     // private constructor : singleton access
     private LoginRepository(LoginDataSource dataSource) {
         this.dataSource = dataSource;
+        loadUserCache();
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance() {
         if (instance == null) {
-            instance = new LoginRepository(dataSource);
+            instance = new LoginRepository(LoginDataSource.getInstance());
         }
         return instance;
     }
@@ -37,8 +41,22 @@ public class LoginRepository {
         dataSource.logout();
     }
 
+    private void loadUserCache() {
+        MainActivity.getContext().getCacheDir();
+    }
+
+    private void storeUserCache() {
+        //store "username:password" in cache file named "user.cache"
+    }
+
+    private void removeUserCache() {
+
+
+    }
+
     private void setLoggedInUser(LoggedInUser user) {
         this.user = user;
+        storeUserCache();
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }
@@ -49,6 +67,7 @@ public class LoginRepository {
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
         }
+
         return result;
     }
 }

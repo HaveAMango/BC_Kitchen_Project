@@ -1,11 +1,13 @@
 package com.example.bc_kitchen_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bc_kitchen_project.ui.login.LoginActivity;
+import com.example.bc_kitchen_project.data.LoginRepository;
+import com.example.bc_kitchen_project.ui.login.WelcomeActivity;
 import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        if (!LoginRepository.getInstance().isLoggedIn()) {
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public static Context getContext() {
+        return getContext();
     }
 }

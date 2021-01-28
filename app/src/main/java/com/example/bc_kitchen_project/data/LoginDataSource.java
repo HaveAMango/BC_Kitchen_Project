@@ -22,7 +22,9 @@ public class LoginDataSource {
 
     private Map<String, String> userCache = new HashMap<>();
 
-    public LoginDataSource() {
+    private volatile static LoginDataSource instance;
+
+    private LoginDataSource() {
         Log.i("login", "Init DataSource");
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference reference = db.getReference("users");
@@ -44,6 +46,14 @@ public class LoginDataSource {
                 Log.e("login", "error: " + error);
             }
         });
+    }
+
+    public static LoginDataSource getInstance() {
+        if (instance == null) {
+            instance = new LoginDataSource();
+        }
+
+        return instance;
     }
 
     public Result<LoggedInUser> login(String username, String password) {
