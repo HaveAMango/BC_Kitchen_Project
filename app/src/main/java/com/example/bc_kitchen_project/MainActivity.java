@@ -3,6 +3,8 @@ package com.example.bc_kitchen_project;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,15 +24,25 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         instance = this;
 
+        Button logoutBtn = findViewById(R.id.button_logout);
+        logoutBtn.setOnClickListener(v -> {
+            LoginRepository.getInstance().logout();
+            redirectToWelcomeScreen(this);
+        });
+
         //Trigger LoginDataSource initialization
         LoginRepository.getInstance();
+    }
+
+    private void redirectToWelcomeScreen(MainActivity mainActivity) {
+        Intent intent = new Intent(mainActivity, WelcomeActivity.class);
+        this.startActivity(intent);
     }
 
     public static void onLoginHandled() {
         LoginRepository.getInstance().loadCachedUser();
         if (!LoginRepository.getInstance().isLoggedIn()) {
-            Intent intent = new Intent(instance, WelcomeActivity.class);
-            instance.startActivity(intent);
+            instance.redirectToWelcomeScreen(instance);
         }
     }
 

@@ -47,14 +47,19 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
+        removeUserCache();
         dataSource.logout();
+    }
+
+    private File getCachedUserFile() {
+        return new File(MainActivity.getContext().getFilesDir(), USER_CACHE_FILENAME);
     }
 
     public void loadCachedUser() {
         Log.i("user-cache", "Load user cache");
         if (userCacheExists()) {
             Log.i("user-cache", "Load user cache, cache file exists - read");
-            File cacheFile = new File(MainActivity.getContext().getFilesDir(), USER_CACHE_FILENAME);
+            File cacheFile = getCachedUserFile();
             try {
                 String storedCredentials = new BufferedReader(new FileReader(cacheFile)).readLine();
                 Log.i("user-cache","Read user from cache: " + storedCredentials);
@@ -70,8 +75,7 @@ public class LoginRepository {
     }
 
     private boolean userCacheExists() {
-        File cacheFile = new File(MainActivity.getContext().getFilesDir(), USER_CACHE_FILENAME);
-        return cacheFile.exists();
+        return getCachedUserFile().exists();
     }
 
     private void storeUserCache(String username, String password) {
@@ -88,8 +92,9 @@ public class LoginRepository {
     }
 
     private void removeUserCache() {
-
-
+        if (userCacheExists()) {
+            getCachedUserFile().delete();
+        }
     }
 
     private void setLoggedInUser(LoggedInUser user) {
