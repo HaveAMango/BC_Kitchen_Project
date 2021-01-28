@@ -11,4 +11,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login_failure_no_user">User not found</string>
     <string name="login_failure_invalid_password">Invalid password</string>
+    <string name="findRecipeButton">Find Recipe!</string>
+    <string name="findRecipeInput">eggs, milk, carrots, etc.</string>
+    <string name="findRecipeDescription">Write in ingredients to search recipes for</string>
 </resources>
