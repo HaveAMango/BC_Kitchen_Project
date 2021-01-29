@@ -3,7 +3,7 @@ package com.example.bc_kitchen_project;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.bc_kitchen_project.findRecipe.FindRecipe;
+
 import com.example.bc_kitchen_project.settings.Settings;
 import com.google.firebase.FirebaseApp;
 

@@ -1,55 +1,60 @@
 package com.example.bc_kitchen_project.settings;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.bc_kitchen_project.R;
 
-public class Settings extends AppCompatActivity implements View.OnClickListener {
-    Button textSizeButton;
-    Button colorSchemeButton;
-    Button deleteAccButton;
-    Button logOutButton;
-
+public class Settings extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        textSizeButton = (Button) findViewById(R.id.TextSizeButton);
-        textSizeButton.setOnClickListener(this);
-        colorSchemeButton = (Button) findViewById(R.id.ColorSchemeButton);
-        colorSchemeButton.setOnClickListener(this);
-        deleteAccButton = (Button) findViewById(R.id.DeleteAccountButton);
-        deleteAccButton.setOnClickListener(this);
-        logOutButton = (Button) findViewById(R.id.LogOutButton);
-        logOutButton.setOnClickListener(this);
+        addPreferencesFromResource(R.xml.settings);
+        loadSettings();
+    }
 
+    private void loadSettings() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean cNight = sp.getBoolean("NIGHT", false);
+        if (cNight) {
+            //ResourcesCompat.getColor(getResources(), R.color.your_color, null)
+            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, null));
+            //Color.parseColor("@colors/purple_200")
+        } else {
+            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.purple_700, null));
+
+
+        }
+
+        CheckBoxPreference cNightInstant = (CheckBoxPreference) findPreference("NIGHT");
+        cNightInstant.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                boolean yes = (boolean) o;
+                if (yes) {
+                    getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, null));
+
+                } else {
+                    getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.purple_700, null));
+
+                }
+                return true;
+            }
+        });
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.TextSizeButton: {
-                Toast.makeText(this, "TextSize Button", Toast.LENGTH_LONG).show();
-                break;
-            }
-
-            case R.id.ColorSchemeButton: {
-                Toast.makeText(this, "ColorScheme Button", Toast.LENGTH_LONG).show();
-                break;
-            }
-            case R.id.DeleteAccountButton: {
-                Toast.makeText(this, "DeleteAcc Button", Toast.LENGTH_LONG).show();
-                break;
-            }
-            case R.id.LogOutButton: {
-                Toast.makeText(this, "LogOut Button", Toast.LENGTH_LONG).show();
-                break;
-            }
-        }
+    protected void onResume() {
+        loadSettings();
+        super.onResume();
     }
 }
