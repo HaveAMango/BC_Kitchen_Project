@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorButtonsHome</item>
+        <item name="colorPrimaryVariant">@color/colorFloatingButton</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+
+    </style>
+
+    <style name="darkTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorButtonsHome</item>
+        <item name="colorPrimaryVariant">@color/colorFloatingButton</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+
+    </style>
+
+
+</resources>
