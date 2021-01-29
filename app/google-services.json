@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "953502579389",
+    "firebase_url": "https://kitchen-test-e5ea8-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "kitchen-test-e5ea8",
+    "storage_bucket": "kitchen-test-e5ea8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953502579389:android:d12d7de0721340e44e55d4",
+        "android_client_info": {
+          "package_name": "com.example.bc_kitchen_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953502579389-0n0ij74i0289goppa60t38g23hflr56h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQeLgRPYdJzHyYBeSrFCThlXgV9a1wig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953502579389-0n0ij74i0289goppa60t38g23hflr56h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
