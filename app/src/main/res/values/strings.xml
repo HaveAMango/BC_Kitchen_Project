@@ -20,4 +20,7 @@
     <string name="colorScheme">Color scheme</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="logOut">Log Out</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register">Register</string>
+    <string name="log_out">Log out</string>
 </resources>

@@ -23,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bc_kitchen_project.R;
-import com.example.bc_kitchen_project.ui.login.LoginViewModel;
-import com.example.bc_kitchen_project.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

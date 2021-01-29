@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +23,9 @@ public class LoginDataSource {
 
     private Map<String, String> userCache = new HashMap<>();
 
-    public LoginDataSource() {
+    private volatile static LoginDataSource instance;
+
+    private LoginDataSource() {
         Log.i("login", "Init DataSource");
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference reference = db.getReference("users");
@@ -37,6 +40,9 @@ public class LoginDataSource {
                     Log.d("login", "Added user: " + username + "-" + password);
                     userCache.put(username, password);
                 }
+
+                //try to login using user cache now
+                MainActivity.onLoginHandled();
             }
 
             @Override
@@ -44,6 +50,14 @@ public class LoginDataSource {
                 Log.e("login", "error: " + error);
             }
         });
+    }
+
+    public static LoginDataSource getInstance() {
+        if (instance == null) {
+            instance = new LoginDataSource();
+        }
+
+        return instance;
     }
 
     public Result<LoggedInUser> login(String username, String password) {
