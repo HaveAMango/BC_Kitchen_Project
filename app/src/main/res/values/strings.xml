@@ -11,6 +11,15 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login_failure_no_user">User not found</string>
     <string name="login_failure_invalid_password">Invalid password</string>
+    <string name="findRecipeButton">Find Recipe!</string>
+    <string name="findRecipeInput">eggs, milk, carrots, etc.</string>
+    <string name="findRecipeDescription">Write in ingredients to search recipes for</string>
+    <string name="findRecipeTitle">Find Recipe</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="textSize">Text Size</string>
+    <string name="colorScheme">Color scheme</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="logOut">Log Out</string>
     <string name="sign_in">Sign in</string>
     <string name="register">Register</string>
     <string name="log_out">Log out</string>
