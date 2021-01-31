@@ -47,6 +47,8 @@
     <string name="rating_agree">I agree that my comment will be seen by other users.</string>
     <string name="send_email_click">If you want to send us an e-mail with questions or suggestions about the app, click HERE.</string>
 
+    <string name="chooseMessage">Choose the type of the message:</string>
+
 
 
     <string name="help_introduction">This application allows you to track your food supplies in your fridge and in your pantry. With this app you will keep an eye on expiration dates of your products. <br/> For your convenience you can add necessary items to your grocery list.</string>
