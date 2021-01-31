@@ -73,12 +73,34 @@ public class LoginDataSource {
             return new Result.Error(new LoginException(R.string.login_failure_invalid_password));
         }
 
-        Log.i("login", "Login successfull: " + username);
+        Log.i("login", "Login successful: " + username);
         LoggedInUser user = new LoggedInUser(username, username);
         return new Result.Success<>(user);
     }
 
     public void logout() {
         // TODO: revoke authentication
+    }
+
+    private void addUser(String username, String password) {
+        Log.i("register", "Register user: " + username);
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference reference = db.getReference("users");
+        DatabaseReference newUser = reference.push();
+        newUser.child("name").setValue(username);
+        newUser.child("password").setValue(password);
+    }
+
+    public Result<LoggedInUser> register(String username, String password) {
+        if (userCache.containsKey(username)) {
+            Log.e("login", "Username already taken:" + username);
+            return new Result.Error(new LoginException(R.string.register_failure_unavailable));
+        }
+
+        addUser(username, password);
+
+        Log.i("register", "Register successful: " + username);
+        LoggedInUser user = new LoggedInUser(username, username);
+        return new Result.Success<>(user);
     }
 }

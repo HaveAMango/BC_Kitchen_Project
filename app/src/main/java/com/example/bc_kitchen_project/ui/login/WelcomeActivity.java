@@ -19,12 +19,15 @@ public class WelcomeActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.button_sign_in);
         Button registerButton = findViewById(R.id.button_register);
 
-        loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+        loginButton.setOnClickListener(v -> redirectTo(LoginActivity.class));
+        registerButton.setOnClickListener(v -> redirectTo(RegisterActivity.class));
+    }
 
-            setResult(Activity.RESULT_OK);
-            finish();
-        });
+    private void redirectTo(Class<? extends Activity> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 }
