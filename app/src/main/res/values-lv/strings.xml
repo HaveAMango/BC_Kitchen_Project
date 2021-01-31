@@ -12,15 +12,42 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login_failure_no_user">User not found</string>
     <string name="login_failure_invalid_password">Invalid password</string>
-
+    <string name="findRecipeButton">Find Recipe!</string>
+    <string name="findRecipeInput">eggs, milk, carrots, etc.</string>
+    <string name="findRecipeDescription">Write in ingredients to search recipes for</string>
+    <string name="findRecipeTitle">Find Recipe</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="textSize">Text Size</string>
+    <string name="colorScheme">Color scheme</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="logOut">Log Out</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register">Register</string>
+    <string name="log_out">Log out</string>
     <string name="fridge">Ledusskapis</string>
     <string name="pantry">Noliktava</string>
     <string name="recipes">Receptes</string>
     <string name="grocery_list">Iepirkumi</string>
     <string name="settings">Iestatījumi</string>
     <string name="help">Palīgā!</string>
+    <string name="feedback">Atsauksmes</string>
+
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_submit">Submit</string>
 
     <string name="exp_date">Expiration date</string>
+
+    <string name="fdb_rate">Rate this app:</string>
+    <string name="fdb_name">Name</string>
+    <string name="fdb_comment">Comment</string>
+    <string name="fdb_email">E-mail</string>
+    <string name="fdb_subject">Subject</string>
+    <string name="fdb_suggestions">Suggestions</string>
+    <string name="rating_agree">I agree that my comment will be seen by other users.</string>
+    <string name="send_email_click">If you want to send us an e-mail with questions or suggestions about the app, click HERE.</string>
+
+
 
     <string name="help_introduction">This application allows you to track your food supplies in your fridge and in your pantry. With this app you will keep an eye on expiration dates of your products. <br/> For your convenience you can add necessary items to your grocery list.</string>
     <string name="introduction">About the App</string>
