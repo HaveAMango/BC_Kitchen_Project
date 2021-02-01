@@ -12,5 +12,9 @@
     <color name="colorAccent">#FFC107</color>
     <color name="colorButtonsHome">#FFEB3B</color>
     <color name="colorFloatingButton">#8BC34A</color>
+    <color name="button">#FFEB3B</color>
+    <color name="buttonText">#FFFFFFFF</color>
+    <color name="buttonNight">#FF000000</color>
+    <color name="buttonTextNight">#FFFFFFFF</color>
 
 </resources>
