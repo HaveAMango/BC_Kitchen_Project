@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.GroceryList;
+import com.example.bc_kitchen_project.Pantry;
 import com.example.bc_kitchen_project.feedback.Feedback;
 import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.Fridge;
+import com.example.bc_kitchen_project.findRecipe.FindRecipe;
+import com.example.bc_kitchen_project.settings.Settings;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,32 +46,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_fridge:
-                Toast.makeText(this, "Fridge button clicked", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent (this, Fridge.class);
                 startActivity(new Intent (this, Fridge.class));
                 break;
             case R.id.btn_pantry:
-                Toast.makeText(this, "Pantry button clicked", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (this, Pantry.class));
+                startActivity(new Intent (this, Pantry.class));
                 break;
             case R.id.btn_recipes:
-                Toast.makeText(this, "Recipes button clicked", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (this, Recipes.class));
+                startActivity(new Intent (this, FindRecipe.class));
                 break;
             case R.id.btn_groceries:
-                Toast.makeText(this, "Groceries button clicked", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (this, Groceries.class));
+                startActivity(new Intent (this, GroceryList.class));
                 break;
             case R.id.btn_settings:
-                Toast.makeText(this, "Settings button clicked", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (this, Settings.class));
+                startActivity(new Intent (this, Settings.class));
                 break;
             case R.id.btn_help:
-                Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent (this, Help.class));
                 break;
             case R.id.btn_feedback:
-                Toast.makeText(this, "Feedback button clicked", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent (this, Feedback.class));
                 break;
             default:
