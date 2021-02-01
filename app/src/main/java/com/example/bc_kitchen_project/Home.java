@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bc_kitchen_project.R;
+import com.example.bc_kitchen_project.findRecipe.FindRecipe;
+import com.example.bc_kitchen_project.settings.Settings;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,14 +48,16 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.btn_recipes:
-                Toast.makeText(this, "Recipes button clicked", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, FindRecipe.class);
+                startActivity(intent);
                 break;
             case R.id.btn_groceries:
                 intent = new Intent(this, GroceryList.class);
                 startActivity(intent);
                 break;
             case R.id.btn_settings:
-                Toast.makeText(this, "Settings button clicked", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, Settings.class);
+                startActivity(intent);
                 break;
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();

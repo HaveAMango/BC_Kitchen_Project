@@ -105,18 +105,22 @@ public class Fridge extends AppCompatActivity {
                                                 Log.e("products", "error: " + error);
                                             }
                                         });
-                                        finish(); //reloads the page to always get active changes
-                                        startActivity(getIntent());
+                                        dialog.cancel();
+                                        askIfAddToGroceryList(product);
                                         break;
                                     case DialogInterface.BUTTON_NEGATIVE: //if says no, nothing happens
+
                                         break;
                                 }
                             }
+
                         };
                         AlertDialog.Builder builder = new AlertDialog.Builder(Fridge.this);
                         builder.setMessage("Do you want to take one " + product + " out of the fridge?").setPositiveButton("Yes", dialogClickListener)
                                 .setNegativeButton("No", dialogClickListener).show(); //the offer
+
                     }
+
                 });
             }
 
@@ -133,4 +137,32 @@ public class Fridge extends AppCompatActivity {
             }
         });
     }
+    public void askIfAddToGroceryList(String product){
+        DialogInterface.OnClickListener dialogClickListener2 = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        database = FirebaseDatabase.getInstance().getReference();
+                        Product temp = new Product(product);
+                        writeNewProduct(temp);
+                        finish(); //reloads the page to always get active changes
+                        startActivity(getIntent());
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        finish(); //reloads the page to always get active changes
+                        startActivity(getIntent());
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(Fridge.this);
+        builder2.setMessage("Do you want to add this product to Grocery List?").setPositiveButton("Yes", dialogClickListener2)
+                .setNegativeButton("No", dialogClickListener2).show();
+    }
+    private void writeNewProduct(Product product) { //writes product to database
+        database.child("user-groceries").child(LoginActivity.activeUserId).child(product.name).setValue(product);
+    }
+
 }
