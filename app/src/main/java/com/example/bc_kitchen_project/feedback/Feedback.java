@@ -1,7 +1,6 @@
-package com.example.bc_kitchen_project;
+package com.example.bc_kitchen_project.feedback;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.home.HomeActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

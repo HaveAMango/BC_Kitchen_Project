@@ -1,4 +1,4 @@
-package com.example.bc_kitchen_project;
+package com.example.bc_kitchen_project.feedback;
 
 public class Rating {
     private String name;

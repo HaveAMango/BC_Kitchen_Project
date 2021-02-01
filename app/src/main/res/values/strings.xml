@@ -50,6 +50,7 @@
     <string name="rating_name">Name:</string>
     <string name="rating_rating">Rating:</string>
     <string name="rating_comment">Comment:</string>
+    <string name="ratings_all_received">All ratings and comments:</string>
 
     <string-array name="messageType">
         <item>Bug report</item>

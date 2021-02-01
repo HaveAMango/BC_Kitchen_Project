@@ -50,6 +50,7 @@
     <string name="rating_name">Name:</string>
     <string name="rating_rating">, rating:</string>
     <string name="rating_comment">Comment:</string>
+    <string name="ratings_all_received">All ratings and comments received for this app:</string>
 
     <string name="chooseMessage">Choose the type of the message:</string>
     

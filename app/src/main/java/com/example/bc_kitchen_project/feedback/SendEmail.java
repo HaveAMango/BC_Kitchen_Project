@@ -1,4 +1,4 @@
-package com.example.bc_kitchen_project;
+package com.example.bc_kitchen_project.feedback;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+
+import com.example.bc_kitchen_project.R;
 
 public class SendEmail extends DialogFragment {
 

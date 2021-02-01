@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.bc_kitchen_project.Feedback;
+import com.example.bc_kitchen_project.feedback.Feedback;
 import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.Fridge;
