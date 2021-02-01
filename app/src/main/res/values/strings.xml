@@ -47,6 +47,10 @@
     <string name="rating_agree">I agree that my comment will be seen by other users.</string>
     <string name="send_email_click">If you want to send us an e-mail with questions or suggestions about the app, click HERE.</string>
 
+    <string name="rating_name">Name:</string>
+    <string name="rating_rating">Rating:</string>
+    <string name="rating_comment">Comment:</string>
+
     <string-array name="messageType">
         <item>Bug report</item>
         <item>Feedback</item>

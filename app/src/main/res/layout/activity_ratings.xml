@@ -7,10 +7,24 @@
     tools:context=".Ratings"
     android:padding="10dp">
 
+<!--    <Button-->
+<!--        android:id="@+id/showRatings"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Button" />-->
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All ratings and comments received for this app:" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ratingsRecyclerview"/>
+        android:layout_below="@id/textView3"/>
+
 
 
 

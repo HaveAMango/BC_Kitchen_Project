@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bc_kitchen_project.home.HomeActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Feedback extends AppCompatActivity {
 
@@ -25,9 +27,13 @@ public class Feedback extends AppCompatActivity {
     Button btn_rating_cancel, btn_rating_submit;
     TextView email_send;
 
+    private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTitle("Feedback");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
@@ -40,13 +46,13 @@ public class Feedback extends AppCompatActivity {
         email_send = findViewById(R.id.email_send);
 
         ratingBar = findViewById(R.id.ratingBar);
-        final float[] ratingValue = new float[1];
+        final String[] ratingValue = new String[1];
         ratingBar.setNumStars(5);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingValue[0] = ratingBar.getRating();
+                ratingValue[0] = String.valueOf((int)ratingBar.getRating());
             }
         });
 
@@ -65,12 +71,20 @@ public class Feedback extends AppCompatActivity {
                     return;
                 }
 
-                if (ratingValue[0] <=0) {
+                if (TextUtils.isEmpty(ratingValue[0])) {
                     Toast.makeText(Feedback.this, "Check the rating value", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Toast.makeText(Feedback.this, "name: " + name + ", comment: " + comment + ", rating: " + ratingValue[0], Toast.LENGTH_LONG).show();
+                if (TextUtils.isEmpty(comment)) {
+                    comment = "***";
+                }
+                Rating rating = new Rating(name, comment, ratingValue[0]);
+
+                database = FirebaseDatabase.getInstance().getReference();
+                writeNewComment(rating);
+
+                startActivity(new Intent (Feedback.this, Ratings.class));
             }
         });
 
@@ -90,9 +104,19 @@ public class Feedback extends AppCompatActivity {
         });
     }
 
+    private void writeNewComment(Rating rating) {
+        database.child("ratings").child(String.valueOf(rating.hashCode())).setValue(rating);
+    }
+
     public void openDialog() {
         SendEmail sendEmail = new SendEmail();
         sendEmail.show(getSupportFragmentManager(), "Choose Email message type");
+    }
+
+    @Override
+    public void onBackPressed() { //makes sure, that is user presses "back" from Fridge, goes to main
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
 
