@@ -25,7 +25,6 @@
         <activity android:name=".Fridge" />
         <activity android:name=".Products" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".Settings"></activity>
         <activity android:name=".Help" />
         <activity
             android:name=".ui.login.LoginActivity"

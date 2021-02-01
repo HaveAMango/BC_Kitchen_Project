@@ -7,7 +7,8 @@
     android:layout_centerHorizontal="true"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="15dp"
-    tools:context=".home.HomeActivity">
+    tools:context=".home.HomeActivity"
+    android:id="@+id/HomeActivity">
 
     <LinearLayout
         android:id="@+id/lin_layout_home1"
