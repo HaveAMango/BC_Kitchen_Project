@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
+import com.example.bc_kitchen_project.ui.login.LoginActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -68,6 +69,7 @@ public class LoginRepository {
                 String username = parts[0];
                 String password = parts[1];
                 login(username, password);
+                LoginActivity.activeUserId = username;
             } catch (IOException e) {
                 Log.e("user-cache","Error while reading cached user: " + e.getMessage());
             }

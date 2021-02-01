@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +32,7 @@ public class InsertProductFridge extends AppCompatActivity {
         setTitle("Add product to fridge");
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(View v) { //gets all the written data after button is clicked, says what can't be empty
                 EditText name = (EditText) findViewById(R.id.editTextTextPersonName);
                 if (TextUtils.isEmpty(name.getText().toString().trim())) {
                     name.setError("Please enter a name");
@@ -59,8 +60,8 @@ public class InsertProductFridge extends AppCompatActivity {
                             writeNewProduct(product);
                         }
                         Toast.makeText(InsertProductFridge.this, "Added",
-                                Toast.LENGTH_SHORT).show();
-                        finish();
+                                Toast.LENGTH_SHORT).show(); //shows that the product was added to database
+                        finish(); //reloads page
                         startActivity(getIntent());
                     }
                 }
@@ -68,7 +69,7 @@ public class InsertProductFridge extends AppCompatActivity {
         });
     }
 
-    private void writeNewProduct(Product product) {
-        database.child("user-fridge").child(Fridge.activeUserId).child(product.name).setValue(product);
+    private void writeNewProduct(Product product) { //writes the product to database
+        database.child("user-fridge").child(LoginActivity.activeUserId).child(product.name).setValue(product);
     }
 }

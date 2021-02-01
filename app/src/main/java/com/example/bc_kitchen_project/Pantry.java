@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,19 +29,21 @@ import java.util.Date;
 
 import static android.R.layout.simple_list_item_1;
 
-public class Pantry extends AppCompatActivity {
+public class Pantry extends AppCompatActivity { //very similar to Fridge, look there
     private DatabaseReference database;
     private ArrayList<String> productsList = new ArrayList<>();
-    public static String activeUserId = "0";
     ListView theListView;
-
+    public void onBackPressed() {
+        Intent intent = new Intent(Pantry.this, MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantry);
         setTitle("Pantry");
         theListView = (ListView) findViewById(R.id.myListView);
-        database = FirebaseDatabase.getInstance().getReference("user-pantry").child(activeUserId);
+        database = FirebaseDatabase.getInstance().getReference("user-pantry").child(LoginActivity.activeUserId);
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -48,7 +51,7 @@ public class Pantry extends AppCompatActivity {
                     String name = product.child("name").getValue().toString();
                     Integer year = Integer.parseInt(product.child("date").child("year").getValue().toString());
                     Integer month = Integer.parseInt(product.child("date").child("month").getValue().toString());
-                    Integer day = Integer.parseInt(product.child("date").child("day").getValue().toString());
+                    Integer day = Integer.parseInt(product.child("date").child("date").getValue().toString());
                     Integer count = Integer.parseInt(product.child("count").getValue().toString());
                     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                     String dateString;
@@ -80,13 +83,12 @@ public class Pantry extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case DialogInterface.BUTTON_POSITIVE:
-                                        database = FirebaseDatabase.getInstance().getReference("user-pantry").child(activeUserId).child(product);
+                                        database = FirebaseDatabase.getInstance().getReference("user-pantry").child(LoginActivity.activeUserId).child(product);
                                         database.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 int countCurrent = Integer.parseInt(snapshot.child("count").getValue().toString());
                                                 if (countCurrent == 1) {
-                                                    DatabaseReference temp = FirebaseDatabase.getInstance().getReference("user-pantry").child(activeUserId).child(product);
                                                     database.removeValue();
                                                 } else {
                                                     countCurrent--;
@@ -109,7 +111,7 @@ public class Pantry extends AppCompatActivity {
                             }
                         };
                         AlertDialog.Builder builder = new AlertDialog.Builder(Pantry.this);
-                        builder.setMessage("Do you want to take one " + product + " out of the fridge?").setPositiveButton("Yes", dialogClickListener)
+                        builder.setMessage("Do you want to take one " + product + " out of the pantry?").setPositiveButton("Yes", dialogClickListener)
                                 .setNegativeButton("No", dialogClickListener).show();
 
 

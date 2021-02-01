@@ -10,10 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class InsertProductPantry extends AppCompatActivity {
+public class InsertProductPantry extends AppCompatActivity { //similar to InsertProductFridge - look there for comments
     private DatabaseReference database;
 
     @Override
@@ -67,6 +68,6 @@ public class InsertProductPantry extends AppCompatActivity {
     }
 
     private void writeNewProduct(Product product) {
-        database.child("user-pantry").child(Pantry.activeUserId).child(product.name).setValue(product);
+        database.child("user-pantry").child(LoginActivity.activeUserId).child(product.name).setValue(product);
     }
 }
