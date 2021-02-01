@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.feedback.Feedback;
 import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.Fridge;
-import com.example.bc_kitchen_project.Settings;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,6 +34,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         btn_settings.setOnClickListener(this);
         Button btn_help = findViewById(R.id.btn_help);
         btn_help.setOnClickListener(this);
+        Button btn_feedback = findViewById(R.id.btn_feedback);
+        btn_feedback.setOnClickListener(this);
     }
 
     @Override
@@ -58,19 +60,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_settings:
                 Toast.makeText(this, "Settings button clicked", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent (this, Settings.class));
+                //startActivity(new Intent (this, Settings.class));
                 break;
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent (this, Help.class));
+                break;
+            case R.id.btn_feedback:
+                Toast.makeText(this, "Feedback button clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent (this, Feedback.class));
                 break;
             default:
                 break;
         }
     }
 
-//    public void openFridge() {
-//        Intent intent = new Intent(this, Fridge.class);
-//        startActivity(intent);
-//    }
+
 }

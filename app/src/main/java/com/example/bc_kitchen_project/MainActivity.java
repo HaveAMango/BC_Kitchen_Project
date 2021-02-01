@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bc_kitchen_project.data.LoginRepository;
+import com.example.bc_kitchen_project.home.HomeActivity;
 import com.example.bc_kitchen_project.ui.login.WelcomeActivity;
 import com.google.firebase.FirebaseApp;
 
@@ -29,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener(v -> {
             LoginRepository.getInstance().logout();
             redirectToWelcomeScreen(this);
+        });
+
+        Button goHome=findViewById(R.id.goHome);
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            }
         });
 
         //Trigger LoginDataSource initialization
