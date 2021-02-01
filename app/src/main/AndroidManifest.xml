@@ -16,10 +16,15 @@
             android:name=".findRecipe.FindRecipe"
             android:label="@string/findRecipeTitle" />
         <activity android:name=".ui.login.WelcomeActivity" />
+        <activity android:name=".GroceryList"></activity>
+        <activity android:name=".InsertProductFridge" />
+        <activity android:name=".InsertProductPantry" />
+        <activity android:name=".Pantry" />
+        <activity android:name=".Fridge" />
+        <activity android:name=".Products" />
+        <activity android:name=".home.HomeActivity" />
         <activity android:name=".Settings"></activity>
         <activity android:name=".Help" />
-        <activity android:name=".Fridge" />
-        <activity android:name=".home.HomeActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
