@@ -1,10 +1,11 @@
 package com.example.bc_kitchen_project;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,28 +24,23 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         instance = this;
-        Intent intent = new Intent(this, Home.class);
-        this.startActivity(intent);
-        Button logoutBtn = findViewById(R.id.button_logout);
-        logoutBtn.setOnClickListener(v -> {
-            LoginRepository.getInstance().logout();
-            redirectToWelcomeScreen(this);
+
+        ImageButton btn = findViewById(R.id.broccoliButton);
+        btn.setOnClickListener(v -> {
+            redirectTo(WelcomeActivity.class);
         });
 
         //Trigger LoginDataSource initialization
         LoginRepository.getInstance();
     }
 
-    private void redirectToWelcomeScreen(MainActivity mainActivity) {
-        Intent intent = new Intent(mainActivity, WelcomeActivity.class);
-        this.startActivity(intent);
+    private void redirectTo(Class<? extends Activity> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
     }
 
     public static void onLoginHandled() {
         LoginRepository.getInstance().loadCachedUser();
-        if (!LoginRepository.getInstance().isLoggedIn()) {
-            instance.redirectToWelcomeScreen(instance);
-        }
     }
 
     public static Context getContext() {
