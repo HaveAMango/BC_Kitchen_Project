@@ -27,36 +27,31 @@ public class Ratings extends AppCompatActivity {
         setContentView(R.layout.activity_ratings);
         setTitle("Ratings");
 
-        // Create a instance of the database and get
-        // its reference
+        // Create a instance of the database and get its reference
         database = FirebaseDatabase.getInstance().getReference("ratings");
         recyclerView = findViewById(R.id.commentRecyclerView);
 
         // To display the Recycler view linearly
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // It is a class provide by the FirebaseUI to make a
-        // query in the database to fetch appropriate data
+        // It is a class provide by the FirebaseUI to make a query in the database to fetch appropriate data
         FirebaseRecyclerOptions<Rating> options
                 = new FirebaseRecyclerOptions.Builder<Rating>()
                 .setQuery(database, Rating.class)
                 .build();
-        // Connecting object of required Adapter class to
-        // the Adapter class itself
+        // Connecting object of required Adapter class to the Adapter class itself
         ratingAdapter = new RatingAdapter(options);
         // Connecting Adapter class with the Recycler view*/
         recyclerView.setAdapter(ratingAdapter);
     }
 
-    // Function to tell the app to start getting
-    // data from database on starting of the activity
+    // Function to tell the app to start getting data from database on starting of the activity
     @Override protected void onStart() {
         super.onStart();
         ratingAdapter.startListening();
     }
 
-    // Function to tell the app to stop getting
-    // data from database on stoping of the activity
+    // Function to tell the app to stop getting data from database on stoping of the activity
     @Override protected void onStop() {
         super.onStop();
         ratingAdapter.stopListening();

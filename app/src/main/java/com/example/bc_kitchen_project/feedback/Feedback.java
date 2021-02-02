@@ -45,10 +45,10 @@ public class Feedback extends AppCompatActivity {
         btn_send_email = findViewById(R.id.btn_send_email);
         btn_see_comments = findViewById(R.id.btn_see_comments);
 
+        // Rating Bar
         ratingBar = findViewById(R.id.ratingBar);
         final String[] ratingValue = new String[1];
         ratingBar.setNumStars(5);
-
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -56,6 +56,9 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
+        // Submit the rating - in case Name is empty or rating bar value is not chosen, or
+        // checkbox that allows others to see your rating is not checked it displays error message
+        // and rating is not submited.
         btn_rating_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +79,7 @@ public class Feedback extends AppCompatActivity {
                     return;
                 }
 
+                // Comment can be empty - then *** is put in this place.
                 if (TextUtils.isEmpty(comment)) {
                     comment = "***";
                 }
