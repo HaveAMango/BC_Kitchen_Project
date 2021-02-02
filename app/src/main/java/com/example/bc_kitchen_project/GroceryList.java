@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.data.LoginRepository;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,7 +55,7 @@ public class GroceryList extends AppCompatActivity {
 
         setContentView(R.layout.activity_grocery_list);
         theListView = (ListView) findViewById(R.id.myListView);
-        database = FirebaseDatabase.getInstance().getReference("user-groceries").child(LoginActivity.activeUserId);
+        database = FirebaseDatabase.getInstance().getReference("user-groceries").child(LoginRepository.activeUserId());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -99,7 +100,7 @@ public class GroceryList extends AppCompatActivity {
             public void onClick(View v) {
                 for (int i = 0; i < theListView.getCount(); i++) {
                     if (theListView.isItemChecked(i)) {
-                        DatabaseReference temp = FirebaseDatabase.getInstance().getReference("user-groceries").child(LoginActivity.activeUserId).child(productsList.get(i));
+                        DatabaseReference temp = FirebaseDatabase.getInstance().getReference("user-groceries").child(LoginRepository.activeUserId()).child(productsList.get(i));
                         temp.removeValue();
                     }
                 }
@@ -111,6 +112,6 @@ public class GroceryList extends AppCompatActivity {
     }
 
     private void writeNewProduct(Product product) { //writes product to database
-        database.child("user-groceries").child(LoginActivity.activeUserId).child(product.name).setValue(product);
+        database.child("user-groceries").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
     }
 }

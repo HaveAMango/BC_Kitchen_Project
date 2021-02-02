@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.data.LoginRepository;
 import com.example.bc_kitchen_project.home.HomeActivity;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -48,7 +49,7 @@ public class Fridge extends AppCompatActivity {
         setContentView(R.layout.activity_fridge);
         setTitle("Fridge");
         theListView = (ListView) findViewById(R.id.myListView);
-        database = FirebaseDatabase.getInstance().getReference("user-fridge").child(LoginActivity.activeUserId);
+        database = FirebaseDatabase.getInstance().getReference("user-fridge").child(LoginRepository.activeUserId());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -88,7 +89,7 @@ public class Fridge extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case DialogInterface.BUTTON_POSITIVE: //if says yes then
-                                        database = FirebaseDatabase.getInstance().getReference("user-fridge").child(LoginActivity.activeUserId).child(product);
+                                        database = FirebaseDatabase.getInstance().getReference("user-fridge").child(LoginRepository.activeUserId()).child(product);
                                         database.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -163,7 +164,7 @@ public class Fridge extends AppCompatActivity {
                 .setNegativeButton("No", dialogClickListener2).show();
     }
     private void writeNewProduct(Product product) { //writes product to database
-        database.child("user-groceries").child(LoginActivity.activeUserId).child(product.name).setValue(product);
+        database.child("user-groceries").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
     }
 
 }

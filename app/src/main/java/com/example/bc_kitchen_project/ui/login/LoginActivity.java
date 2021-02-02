@@ -24,8 +24,6 @@ import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
-
-    public static String activeUserId;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -123,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        activeUserId = model.getDisplayName();
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();

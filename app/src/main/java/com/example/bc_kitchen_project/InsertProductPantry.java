@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bc_kitchen_project.data.LoginRepository;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -68,6 +69,6 @@ public class InsertProductPantry extends AppCompatActivity { //similar to Insert
     }
 
     private void writeNewProduct(Product product) {
-        database.child("user-pantry").child(LoginActivity.activeUserId).child(product.name).setValue(product);
+        database.child("user-pantry").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
     }
 }

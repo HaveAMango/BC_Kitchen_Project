@@ -3,15 +3,15 @@ package com.example.bc_kitchen_project.data;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
-import com.example.bc_kitchen_project.ui.login.LoginActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -46,6 +46,10 @@ public class LoginRepository {
         return user != null;
     }
 
+    public static String activeUserId() {
+        return getInstance().isLoggedIn() ? getInstance().user.getUserId() : null;
+    }
+
     public void logout() {
         user = null;
         removeUserCache();
@@ -69,7 +73,6 @@ public class LoginRepository {
                 String username = parts[0];
                 String password = parts[1];
                 login(username, password);
-                LoginActivity.activeUserId = username;
             } catch (IOException e) {
                 Log.e("user-cache","Error while reading cached user: " + e.getMessage());
             }
