@@ -21,25 +21,28 @@ public class SendEmail extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.chooseMessage);
+
+        //Sets dialog with radio buttons, values are taken from the String.xml StringArray
         builder.setSingleChoiceItems(R.array.messageType, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 selection = messageType[which];
             }
         });
+        // In case positive button is pressed
         builder.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), selection + " message needs to be sent", Toast.LENGTH_SHORT).show();
                 String[] TO = {"zane.kaibe@gmail.com"};
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, TO);
-                email.putExtra(Intent.EXTRA_SUBJECT, selection + " on Pantry item app");
+                email.putExtra(Intent.EXTRA_SUBJECT, selection + " " + getText(R.string.email_email_title));
                 email.setType("message/rfc822");
-                startActivity(Intent.createChooser(email, "Choose app to send email"));
-
+                startActivity(Intent.createChooser(email, getText(R.string.email_choose_app)));
             }
         });
+
+        // If cancel is pressed
         builder.setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

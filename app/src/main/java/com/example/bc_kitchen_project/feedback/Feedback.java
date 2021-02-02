@@ -24,8 +24,7 @@ public class Feedback extends AppCompatActivity {
     RatingBar ratingBar;
     EditText rating_name, rating_comment;
     CheckBox rating_checkBox;
-    Button btn_rating_cancel, btn_rating_submit;
-    TextView email_send;
+    Button btn_rating_cancel, btn_rating_submit, btn_send_email, btn_see_comments;
 
     private DatabaseReference database;
 
@@ -43,12 +42,13 @@ public class Feedback extends AppCompatActivity {
         rating_checkBox = findViewById(R.id.rating_checkBox);
         btn_rating_cancel = findViewById(R.id.btn_rating_cancel);
         btn_rating_submit = findViewById(R.id.btn_rating_submit);
-        email_send = findViewById(R.id.email_send);
+        btn_send_email = findViewById(R.id.btn_send_email);
+        btn_see_comments = findViewById(R.id.btn_see_comments);
 
+        // Rating Bar
         ratingBar = findViewById(R.id.ratingBar);
         final String[] ratingValue = new String[1];
         ratingBar.setNumStars(5);
-
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -56,6 +56,9 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
+        // Submit the rating - in case Name is empty or rating bar value is not chosen, or
+        // checkbox that allows others to see your rating is not checked it displays error message
+        // and rating is not submited.
         btn_rating_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,19 +66,20 @@ public class Feedback extends AppCompatActivity {
                 String comment = rating_comment.getText().toString().trim();
 
                 if (TextUtils.isEmpty(name)) {
-                    rating_name.setError("Name field can not be empty!");
+                    rating_name.setError(getText(R.string.warning_empty_name));
                     return;
                 }
                 if (!rating_checkBox.isChecked()) {
-                    rating_checkBox.setError("You have to agree that your comment may be seen by other users.");
+                    rating_checkBox.setError(getText(R.string.warning_checkbox));
                     return;
                 }
 
                 if (TextUtils.isEmpty(ratingValue[0])) {
-                    Toast.makeText(Feedback.this, "Check the rating value", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Feedback.this, R.string.warning_rating, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                // Comment can be empty - then *** is put in this place.
                 if (TextUtils.isEmpty(comment)) {
                     comment = "***";
                 }
@@ -88,11 +92,17 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
-        email_send.setOnClickListener(new View.OnClickListener() {
+        btn_send_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(Feedback.this, "There will be Dialog window with options to send email", Toast.LENGTH_SHORT).show();
                 openDialog();
+            }
+        });
+
+        btn_see_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Feedback.this, Ratings.class));
             }
         });
 
