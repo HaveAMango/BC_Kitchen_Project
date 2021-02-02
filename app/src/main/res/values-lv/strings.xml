@@ -45,7 +45,16 @@
     <string name="fdb_subject">Subject</string>
     <string name="fdb_suggestions">Suggestions</string>
     <string name="rating_agree">I agree that my comment will be seen by other users.</string>
-    <string name="send_email_click">If you want to send us an e-mail with questions or suggestions about the app, click HERE.</string>
+    <string name="send_email_click">To send us e-mail with your <br/> questions and suggestions click HERE.</string>
+    <string name="btn_send_email">Send e-mail</string>
+    <string name="see_comments">To see all comments click here </string>
+    <string name="btn_see_comments">See comments</string>
+    <string name="email_email_title">for the Pantry item app</string>
+    <string name="email_choose_app">Choose app to send email</string>
+
+    <string name="warning_empty_name">Name field can not be empty!</string>
+    <string name="warning_checkbox">You have to agree that your comment may be seen by other users.</string>
+    <string name="warning_rating">Choose the rating value</string>
 
     <string name="rating_name">Name:</string>
     <string name="rating_rating">, rating:</string>
