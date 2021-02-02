@@ -79,13 +79,16 @@
 
     <LinearLayout
         android:id="@+id/lin_layout_home3"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lin_layout_home2"
-        android:layout_margin="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
-        android:weightSum="3">
+        android:orientation="vertical"
+        android:weightSum="4">
 
         <Button
             android:id="@+id/btn_settings"
@@ -94,10 +97,10 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textStyle="bold"
             android:backgroundTint="@color/colorPrimaryDark"
             android:drawableTop="@drawable/ic_settings"
-            android:text="@string/settings" />
+            android:text="@string/settings"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_help"
@@ -106,10 +109,10 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textStyle="bold"
             android:backgroundTint="@color/colorPrimaryDark"
             android:drawableTop="@drawable/ic_help"
-            android:text="@string/help" />
+            android:text="@string/help"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_feedback"
@@ -118,10 +121,22 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textStyle="bold"
             android:backgroundTint="@color/colorPrimaryDark"
             android:drawableTop="@drawable/ic_feedback"
-            android:text="@string/feedback" />
+            android:text="@string/feedback"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:drawableTop="@drawable/abc_vector_test"
+            android:text="@string/log_out"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

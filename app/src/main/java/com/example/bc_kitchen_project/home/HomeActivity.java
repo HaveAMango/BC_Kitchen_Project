@@ -13,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.example.bc_kitchen_project.GroceryList;
+import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.Pantry;
+import com.example.bc_kitchen_project.data.LoginRepository;
 import com.example.bc_kitchen_project.feedback.Feedback;
 import com.example.bc_kitchen_project.Help;
 import com.example.bc_kitchen_project.R;
@@ -32,29 +34,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Button btn_fridge = findViewById(R.id.btn_fridge);
-        btn_fridge.setOnClickListener(this);
-        buttons.add(btn_fridge);
-        Button btn_pantry = findViewById(R.id.btn_pantry);
-        btn_pantry.setOnClickListener(this);
-        buttons.add(btn_pantry);
-        Button btn_recipes = findViewById(R.id.btn_recipes);
-        btn_recipes.setOnClickListener(this);
-        buttons.add(btn_recipes);
-        Button btn_groceries = findViewById(R.id.btn_groceries);
-        btn_groceries.setOnClickListener(this);
-        buttons.add(btn_groceries);
-        Button btn_settings = findViewById(R.id.btn_settings);
-        btn_settings.setOnClickListener(this);
-        buttons.add(btn_settings);
-        Button btn_help = findViewById(R.id.btn_help);
-        btn_help.setOnClickListener(this);
-        buttons.add(btn_help);
-        Button btn_feedback = findViewById(R.id.btn_feedback);
-        btn_feedback.setOnClickListener(this);
-        buttons.add(btn_feedback);
+
+        addButton(R.id.btn_fridge);
+        addButton(R.id.btn_pantry);
+        addButton(R.id.btn_recipes);
+        addButton(R.id.btn_groceries);
+        addButton(R.id.btn_settings);
+        addButton(R.id.btn_help);
+        addButton(R.id.btn_feedback);
+        addButton(R.id.btn_logout);
+
         mainAct = findViewById(R.id.HomeActivity);
         //loadSettings();
+    }
+
+    private void addButton(int id) {
+        Button btn = findViewById(id);
+        btn.setOnClickListener(this);
+        buttons.add(btn);
     }
 
     @Override
@@ -80,6 +77,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_feedback:
                 startActivity(new Intent (this, Feedback.class));
+                break;
+            case R.id.btn_logout:
+                LoginRepository.getInstance().logout();
+
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+                setResult(RESULT_OK);
+                finish();
                 break;
             default:
                 break;
