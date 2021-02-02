@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.home.HomeActivity;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +35,7 @@ public class Pantry extends AppCompatActivity { //very similar to Fridge, look t
     private ArrayList<String> productsList = new ArrayList<>();
     ListView theListView;
     public void onBackPressed() {
-        Intent intent = new Intent(Pantry.this, Home.class);
+        Intent intent = new Intent(Pantry.this, HomeActivity.class);
         startActivity(intent);
     }
     @Override

@@ -20,8 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bc_kitchen_project.Home;
 import com.example.bc_kitchen_project.R;
+import com.example.bc_kitchen_project.home.HomeActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
 
-                    Intent intent = new Intent(RegisterActivity.this, Home.class);
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
 
                     setResult(Activity.RESULT_OK);

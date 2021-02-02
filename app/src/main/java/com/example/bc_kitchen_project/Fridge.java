@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.home.HomeActivity;
 import com.example.bc_kitchen_project.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +38,7 @@ public class Fridge extends AppCompatActivity {
     ListView theListView;
     @Override
     public void onBackPressed() { //makes sure, that is user presses "back" from Fridge, goes to main
-        Intent intent = new Intent(Fridge.this, Home.class);
+        Intent intent = new Intent(Fridge.this, HomeActivity.class);
         startActivity(intent);
     }
 
