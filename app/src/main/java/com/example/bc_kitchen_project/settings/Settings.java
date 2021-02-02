@@ -88,8 +88,9 @@ public class Settings extends PreferenceActivity {
         });
 
         ListPreference textSize = (ListPreference) findPreference("TEXTSIZE");
-        //FIXME line1Size = a.getDimensionPixelSize(R.styleable.StackedTextView_line1_textSize, 0);
-        //tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.txt_size));
+        //FIXME next line can be used for changing text size (Maybe) or
+        // line1Size = a.getDimensionPixelSize(R.styleable.StackedTextView_line1_textSize, 0);
+        // tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.txt_size));
         String txtSize = sp.getString("TEXTSIZE", "false");
         if ("1".equals(txtSize)) {
             String value = String.valueOf(getResources().getDimensionPixelSize(R.dimen.font_size1));
