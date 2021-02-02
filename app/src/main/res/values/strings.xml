@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name">BC_Kitchen_Project</string>
+    <string name="app_name">Broccoli Kitchen</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be >3 characters</string>
+    <string name="password_no_match">Passwords do not match</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_failure_no_user">User not found</string>
     <string name="login_failure_invalid_password">Invalid password</string>
-    <string name="findRecipeButton">Find Recipe!</string>
+    <string name="findRecipeButton">Find Recipe!</string>\
     <string name="findRecipeInput">eggs, milk, carrots, etc.</string>
     <string name="findRecipeDescription">Write in ingredients to search recipes for</string>
     <string name="findRecipeTitle">Find Recipe</string>

@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
+                loginViewModel.registerDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
         };

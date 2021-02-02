@@ -1,15 +1,14 @@
 package com.example.bc_kitchen_project;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.bc_kitchen_project.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.bc_kitchen_project.data.LoginRepository;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +31,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         btn_settings.setOnClickListener(this);
         Button btn_help = findViewById(R.id.btn_help);
         btn_help.setOnClickListener(this);
+        Button btn_logout = findViewById(R.id.signOutBtn);
+        btn_logout.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +59,14 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             case R.id.btn_help:
                 Toast.makeText(this, "Help button clicked", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.signOutBtn:
+                LoginRepository.getInstance().logout();
+
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+                setResult(RESULT_OK);
+                finish();
             default:
                 break;
         }

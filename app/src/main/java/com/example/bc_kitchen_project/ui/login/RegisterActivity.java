@@ -36,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
+        final EditText confirmPassEditText = findViewById(R.id.confirmPassword);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
@@ -49,8 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
                 if (loginFormState.getUsernameError() != null) {
                     usernameEditText.setError(getString(loginFormState.getUsernameError()));
                 }
+
                 if (loginFormState.getPasswordError() != null) {
                     passwordEditText.setError(getString(loginFormState.getPasswordError()));
+                }
+
+                if (loginFormState.getPasswordConfirmError() != null) {
+                    confirmPassEditText.setError(getString(loginFormState.getPasswordConfirmError()));
                 }
             }
         });
@@ -93,13 +99,16 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loginViewModel.registerDataChanged(
+                        usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        confirmPassEditText.getText().toString());
             }
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        confirmPassEditText.addTextChangedListener(afterTextChangedListener);
+        confirmPassEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
