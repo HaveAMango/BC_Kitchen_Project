@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bc_kitchen_project.Home;
 import com.example.bc_kitchen_project.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -71,6 +73,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+
+                    Intent intent = new Intent(LoginActivity.this, Home.class);
+                    startActivity(intent);
 
                     setResult(Activity.RESULT_OK);
                     //Complete and destroy login activity once successful

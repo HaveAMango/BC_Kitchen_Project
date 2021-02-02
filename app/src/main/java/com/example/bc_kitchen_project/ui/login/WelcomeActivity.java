@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.bc_kitchen_project.Home;
 import com.example.bc_kitchen_project.R;
+import com.example.bc_kitchen_project.data.LoginRepository;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -21,6 +23,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> redirectTo(LoginActivity.class));
         registerButton.setOnClickListener(v -> redirectTo(RegisterActivity.class));
+
+        if (LoginRepository.getInstance().isLoggedIn()) {
+            redirectTo(Home.class);
+        }
     }
 
     private void redirectTo(Class<? extends Activity> activity) {

@@ -94,7 +94,7 @@ public class LoginDataSource {
     public Result<LoggedInUser> register(String username, String password) {
         if (userCache.containsKey(username)) {
             Log.e("login", "Username already taken:" + username);
-            return new Result.Error(new LoginException(R.string.register_failure_unavailable));
+            return new Result.Error(new LoginException(R.string.invalid_username));
         }
 
         addUser(username, password);

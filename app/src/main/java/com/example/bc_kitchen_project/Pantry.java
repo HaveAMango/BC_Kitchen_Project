@@ -34,7 +34,7 @@ public class Pantry extends AppCompatActivity { //very similar to Fridge, look t
     private ArrayList<String> productsList = new ArrayList<>();
     ListView theListView;
     public void onBackPressed() {
-        Intent intent = new Intent(Pantry.this, MainActivity.class);
+        Intent intent = new Intent(Pantry.this, Home.class);
         startActivity(intent);
     }
     @Override

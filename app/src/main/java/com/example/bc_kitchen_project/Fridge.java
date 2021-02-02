@@ -37,7 +37,7 @@ public class Fridge extends AppCompatActivity {
     ListView theListView;
     @Override
     public void onBackPressed() { //makes sure, that is user presses "back" from Fridge, goes to main
-        Intent intent = new Intent(Fridge.this, MainActivity.class);
+        Intent intent = new Intent(Fridge.this, Home.class);
         startActivity(intent);
     }
 
