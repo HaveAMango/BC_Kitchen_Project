@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BC_Kitchen_Project">
+        <activity android:name=".feedback.Ratings"></activity>
+        <activity android:name=".feedback.Feedback" />
         <activity android:name=".settings.Settings" />
         <activity
             android:name=".findRecipe.FindRecipe"
@@ -21,8 +23,9 @@
         <activity android:name=".InsertProductPantry" />
         <activity android:name=".Pantry" />
         <activity android:name=".Fridge" />
-        <activity android:name=".Home" />
         <activity android:name=".Products" />
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".Help" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
@@ -30,6 +33,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

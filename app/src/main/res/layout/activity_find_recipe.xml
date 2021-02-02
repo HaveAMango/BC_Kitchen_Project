@@ -22,10 +22,13 @@
         android:layout_width="255dp"
         android:layout_height="50dp"
         android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/findRecipeDescription"
+        app:layout_constraintBottom_toTopOf="@+id/findRecipeInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/findRecipeInput"
