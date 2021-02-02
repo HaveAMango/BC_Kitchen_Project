@@ -62,38 +62,9 @@ public class Ratings extends AppCompatActivity {
         ratingAdapter.stopListening();
     }
 
-
-
-/*        Button showRatings = findViewById(R.id.showRatings);
-        showRatings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                database.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot product : snapshot.getChildren()) {
-                            String name = product.child("name").getValue().toString().trim();
-                            String comment = product.child("comment").getValue().toString().trim();
-                            float ratingValue = (float) product.child("rating_value").getValue();
-
-                            Toast.makeText(Ratings.this, name + ": " + comment + ", rating: " + ratingValue, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.e("ratings", "error: " + error);
-                    }
-
-                });
-            }
-
-        });*/
-
     @Override
-    public void onBackPressed() { //makes sure, that is user presses "back" from Fridge, goes to main
-        Intent intent = new Intent(this, HomeActivity.class);
+    public void onBackPressed() { //makes sure, that is user presses "back" from Ratings, goes to Feedback
+        Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
     }
 }
