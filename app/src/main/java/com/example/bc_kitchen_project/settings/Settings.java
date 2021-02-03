@@ -3,6 +3,7 @@ package com.example.bc_kitchen_project.settings;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -32,7 +33,7 @@ public class Settings extends PreferenceActivity {
     private void loadSettings() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        boolean cNight = sp.getBoolean("NIGHT", false);
+        /*boolean cNight = sp.getBoolean("NIGHT", false);
         if (cNight) {
             getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
         } else {
@@ -52,34 +53,60 @@ public class Settings extends PreferenceActivity {
                 }
                 return true;
             }
-        });
+        });*/
 
-        ListPreference lp = (ListPreference) findPreference("ORIENTATION");
-        String orient = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-            lp.setSummary(lp.getEntry());
-        } else if ("2".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            lp.setSummary(lp.getEntry());
-        } else if ("3".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            lp.setSummary(lp.getEntry());
+
+        ListPreference lp = (ListPreference) findPreference("COLORSCHEME");
+        String color = sp.getString("COLORSCHEME", "false");
+        /*switch (color) {
+            case "1":
+                mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+                break;
+            case "2":
+                mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorFloatingButton, null));
+                break;
+            case "3":
+                mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, null));
+                break;
+            default:
+                break;
+        }*/
+        switch (color) {
+            case "1":
+                setTheme(R.style.AppTheme);
+                //BackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+                //lp.setSummary(lp.getEntry());
+                break;
+            case "2":
+                setTheme(R.style.green);
+                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                //lp.setSummary(lp.getEntry());
+                break;
+            case "3":
+                setTheme(R.style.violet);
+                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                //lp.setSummary(lp.getEntry());
+                break;
+            default:
+                break;
         }
+
         lp.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
                 String items = (String) o;
-                if (preference.getKey().equals("ORIENTATION")) {
+                if (preference.getKey().equals("COLORSCHEME")) {
                     switch (items) {
                         case "1":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
+                            setTheme(R.style.AppTheme);
                             break;
                         case "2":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            setTheme(R.style.green);
                             break;
                         case "3":
-                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                            setTheme(R.style.darkTheme);
+                            break;
+                        default:
                             break;
                     }
                 }

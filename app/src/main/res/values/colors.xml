@@ -16,7 +16,9 @@
     <color name="colorFloatingButton">#8BC34A</color>
     <color name="button">#FFEB3B</color>
     <color name="buttonText">#FFFFFFFF</color>
-    <color name="buttonNight">#FF000000</color>
+    <color name="backgroundNight">#8D000000</color>
+    <color name="mainButtonNight">#FF000000</color>
+    <color name="secondaryButtonNight">#B15000</color>
     <color name="buttonTextNight">#FFFFFFFF</color>
 
 

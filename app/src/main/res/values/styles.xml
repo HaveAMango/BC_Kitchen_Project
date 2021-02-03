@@ -21,5 +21,25 @@
 
     </style>
 
+    <style name="green" parent="Theme.BC_Kitchen_Project">
+        <item name="colorPrimary">@color/colorFloatingButton</item>
+        <item name="colorPrimaryDark">@color/colorFloatingButton</item>
+        <item name="colorAccent">@color/colorFloatingButton</item>
+        <item name="colorButtonNormal">@color/colorFloatingButton</item>
+        <item name="colorPrimaryVariant">@color/colorFloatingButton</item>
+        <item name="android:textColorPrimary">@color/colorFloatingButton</item>
+    </style>
+
+    <style name="violet" parent="Theme.BC_Kitchen_Project">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryDark">@color/purple_200</item>
+        <item name="colorAccent">@color/purple_200</item>
+        <item name="colorButtonNormal">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_200</item>
+        <item name="android:textColorPrimary">@color/purple_200</item>
+    </style>
+
+
+
 
 </resources>

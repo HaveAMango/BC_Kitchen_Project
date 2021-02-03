@@ -8,20 +8,21 @@
             android:summaryOn="Night Mode activated"
             android:title="Night mode" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Screen Orientation">
+
+    <PreferenceCategory android:title="Change Color Scheme">
         <ListPreference
             android:defaultValue="false"
-            android:entries="@array/items_name"
-            android:entryValues="@array/items_value"
-            android:key="ORIENTATION"
-            android:title="Orientation" />
+            android:entries="@array/ColorScheme"
+            android:entryValues="@array/ColorSchemeValues"
+            android:key="COLORSCHEME"
+            android:title="Color Scheme" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Text Size">
+    <PreferenceCategory android:title="Change Text Size">
         <ListPreference android:defaultValue="false"
             android:entries="@array/textSize"
             android:entryValues="@array/textSizeValues"
             android:key="TEXTSIZE"
             android:title="Text Size"/>
-
     </PreferenceCategory>
+
 </PreferenceScreen>
