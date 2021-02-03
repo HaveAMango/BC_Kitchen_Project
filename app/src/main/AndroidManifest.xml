@@ -23,7 +23,6 @@
         <activity android:name=".InsertProductPantry" />
         <activity android:name=".Pantry" />
         <activity android:name=".Fridge" />
-        <activity android:name=".Products" />
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".Help" />
         <activity
