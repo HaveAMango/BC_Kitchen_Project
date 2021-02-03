@@ -97,7 +97,7 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorFloatingButton"
             android:drawableTop="@drawable/ic_settings"
             android:text="@string/settings"
             android:textStyle="bold" />
@@ -109,7 +109,7 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorFloatingButton"
             android:drawableTop="@drawable/ic_help"
             android:text="@string/help"
             android:textStyle="bold" />
@@ -121,7 +121,7 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorFloatingButton"
             android:drawableTop="@drawable/ic_feedback"
             android:text="@string/feedback"
             android:textStyle="bold" />
@@ -133,7 +133,7 @@
             android:layout_gravity="center"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorFloatingButton"
             android:drawableTop="@drawable/abc_vector_test"
             android:text="@string/log_out"
             android:textStyle="bold" />
