@@ -3,8 +3,6 @@ package com.example.bc_kitchen_project.data;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
 
@@ -30,14 +28,17 @@ public class LoginRepository {
     // @see https://developer.android.com/training/articles/keystore
     private LoggedInUser user = null;
 
+    private boolean cacheSession;
+
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    LoginRepository(boolean cacheSession, LoginDataSource dataSource) {
+        this.cacheSession = cacheSession;
         this.dataSource = dataSource;
     }
 
     public static LoginRepository getInstance() {
         if (instance == null) {
-            instance = new LoginRepository(LoginDataSource.getInstance());
+            instance = new LoginRepository(true, LoginDataSourceImpl.getInstance());
         }
         return instance;
     }
@@ -52,8 +53,9 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
-        removeUserCache();
-        dataSource.logout();
+        if (cacheSession) {
+            removeUserCache();
+        }
     }
 
     private File getCachedUserFile() {
@@ -61,6 +63,8 @@ public class LoginRepository {
     }
 
     public void loadCachedUser() {
+        if (!cacheSession) return;
+
         Log.i("user-cache", "Load user cache");
         if (userCacheExists()) {
             Log.i("user-cache", "Load user cache, cache file exists - read");
@@ -112,7 +116,9 @@ public class LoginRepository {
         Result<LoggedInUser> result = dataSource.register(username, password);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-            storeUserCache(username, password);
+            if (cacheSession) {
+                storeUserCache(username, password);
+            }
         }
 
         return result;
@@ -123,7 +129,9 @@ public class LoginRepository {
         Result<LoggedInUser> result = dataSource.login(username, password);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-            storeUserCache(username, password);
+            if (cacheSession) {
+                storeUserCache(username, password);
+            }
         }
 
         return result;

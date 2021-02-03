@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Broccoli Kitchen</string>
+    <string name="app_name">My Virtual Kitchen</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
@@ -74,31 +74,43 @@
 
     <string name="chooseMessage">Choose the type of the message:</string>
 
-    <string name="help_introduction">This application allows you to track your food supplies in your fridge and in your pantry. With this app you will keep an eye on expiration dates of your products. <br /> For your convenience you can add necessary items to your grocery list.</string>
+    <string name="help_introduction">
+        \tThis application allows you to track your food supply in your kitchen and on the expiration dates of your products.
+        \n\t You can add necessary items to your grocery list and search for the recipes on the internet.
+        \n\tThere are two main categories  for your kitchen items in this app - fridge and pantry items.
+        You can add them separately to the appropriate storage place.
+    </string>
     <string name="introduction">About the App</string>
     <string name="help_fridge">
-        \tYou can add your fridge items here. For each product you can specify the expiration day and the total amount of the product in the fridge.
-        \n
-        \tExpiration status of the products will be provided: if the item has expired warning message will be printed.
-        \n
-        \tYou can copy/add any item from your fridge to the grocery list.
+        \tYou can add there food that you have in your fridge and freezer and specify the amount of it.
+        \n\tFor each product you can set an expiration date if needed. Warning message will be printed for the items that have expired.
+        \n\tYou can delete items from the fridge and choose to add item from your fridge to the grocery list.
     </string>
     <string name="help_pantry">
-        \t You can add your pantry items here. For each product you can specify the expiration day and the total amount of the product in your pantry.
-        \n
-        \tExpiration status of the products will be provided: if the item has expired warning message will be printed.
-        \n
-        \tYou can copy/add any item from your pantry to the grocery list.
+        \t Similarly as for the Fridge section, in the Pantry you can store food that should be stored in the pantry.
+        \n\tExpiration status for the products will be shown: warning message will be printed for the items that have expired.
+        \n\tYou can delete items from the pantry and choose to add item directly from your pantry to the shopping list.
+    </string>
+    <string name="help_recipes">
+        \tIn this section you can search recipes on the internet by writing key ingredients. It is advised that
+        you search recipes using ingredients with the closest expiration dates.
     </string>
     <string name="help_grocery_list">
-        \tYou can add your grocery items separately in the grocery list or you can copy them from the fridge or pantry.
-        \n
-        \tYou can check the item you have purchased - it will change the appearance of this item.
-        \n
-        \tYou can move the item from the shopping list to the fridge or pantry???
+        \tYou can add there items directly of copy them from Fridge or Pantry.
+        \n\tYou can check the items you have purchased and remove them from the shopping list.
     </string>
     <string name="help_settings">
-        \tIn the settings you can modify the theme for the application - orange (default) and day/night.
+        \t You can change color scheme and Text Size in app by pressing buttons Color Scheme or Text Size and selecting from the list.
+    </string>
+    <string name="help_feedback">
+        \t You can leave your feedback about this app in this section.
+        \n\tYou can rate the app (from 1 to 5 stars), leave your comment (optional). This feedback will be accesible
+        for all the users of this app, therefore your consent will be asked.
+        \n\t If you don\'t want for other users to see your comment, you can opt for sending and e-mail to the
+        developers of this app. In this case you will have to chose the type of the message and an app for
+        sending this e-mail.
+        \n\t Also sending e-mail is useful if there are questions to which you did not find answer in this Help section.
+        \n\t You can also see other comments without leaving your feedback.
     </string>
 
 

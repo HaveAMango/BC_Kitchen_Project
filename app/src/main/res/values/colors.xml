@@ -9,18 +9,17 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimaryText">#FF000000</color>
 
-    <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryDark">#EF6C00</color>
-    <color name="colorAccent">#FFC107</color>
-    <color name="colorButtonsHome">#FFEB3B</color>
+    <color name="colorPrimary">#FFB74D</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorAccent">#FFA726</color>
+    <color name="colorButtonsHome">#FFCC80</color>
     <color name="colorFloatingButton">#8BC34A</color>
     <color name="button">#FFEB3B</color>
-    <color name="buttonText">#FFFFFFFF</color>
+    <color name="buttonText">#FFF3E0</color>
     <color name="backgroundNight">#8D000000</color>
     <color name="mainButtonNight">#FF000000</color>
     <color name="secondaryButtonNight">#B15000</color>
     <color name="buttonTextNight">#FFFFFFFF</color>
-
 
 
 </resources>
