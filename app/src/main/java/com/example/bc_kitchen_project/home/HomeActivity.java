@@ -1,22 +1,18 @@
 package com.example.bc_kitchen_project.home;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.example.bc_kitchen_project.GroceryList;
 import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.Pantry;
@@ -27,7 +23,6 @@ import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.Fridge;
 import com.example.bc_kitchen_project.findRecipe.FindRecipe;
 import com.example.bc_kitchen_project.settings.Settings;
-
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -36,7 +31,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Intent intent;
     private ArrayList<Button> mainButtons = new ArrayList<Button>();
     private ArrayList<Button> secondaryButtons = new ArrayList<Button>();
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,25 +71,25 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_fridge:
-                startActivity(new Intent(this, Fridge.class));
+                startActivity(new Intent (this, Fridge.class));
                 break;
             case R.id.btn_pantry:
-                startActivity(new Intent(this, Pantry.class));
+                startActivity(new Intent (this, Pantry.class));
                 break;
             case R.id.btn_recipes:
-                startActivity(new Intent(this, FindRecipe.class));
+                startActivity(new Intent (this, FindRecipe.class));
                 break;
             case R.id.btn_groceries:
-                startActivity(new Intent(this, GroceryList.class));
+                startActivity(new Intent (this, GroceryList.class));
                 break;
             case R.id.btn_settings:
-                startActivity(new Intent(this, Settings.class));
+                startActivity(new Intent (this, Settings.class));
                 break;
             case R.id.btn_help:
-                startActivity(new Intent(this, Help.class));
+                startActivity(new Intent (this, Help.class));
                 break;
             case R.id.btn_feedback:
-                startActivity(new Intent(this, Feedback.class));
+                startActivity(new Intent (this, Feedback.class));
                 break;
             case R.id.btn_logout:
                 LoginRepository.getInstance().logout();
