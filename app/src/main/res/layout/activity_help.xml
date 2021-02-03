@@ -12,7 +12,7 @@
         android:id="@+id/helpHeadIntro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorFloatingButton"
         android:padding="8dp"
         android:text="@string/introduction"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="@string/fridge"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="@string/pantry"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
@@ -82,11 +82,32 @@
                 android:text="@string/help_pantry" />
 
             <TextView
+                android:id="@+id/helpHeadRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="5dp"
+                android:text="@string/recipes"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/helpRecipesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="5dp"
+                android:padding="5dp"
+                android:text="@string/help_recipes" />
+
+            <TextView
                 android:id="@+id/helpHeadGroceries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="@string/grocery_list"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
@@ -107,12 +128,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:text="@string/settings"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/helpSettingsText"
                 android:layout_width="match_parent"
@@ -122,6 +142,27 @@
                 android:lineSpacingExtra="5dp"
                 android:padding="5dp"
                 android:text="@string/help_settings" />
+
+            <TextView
+                android:id="@+id/helpHeadFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="5dp"
+                android:text="@string/feedback"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/helpFeedbackText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="5dp"
+                android:padding="5dp"
+                android:text="@string/help_feedback" />
+
         </LinearLayout>
 
     </ScrollView>
