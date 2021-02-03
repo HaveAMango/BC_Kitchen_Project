@@ -29,7 +29,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private RelativeLayout mainAct;
     Intent intent;
     private ArrayList<Button> buttons = new ArrayList<Button>();
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
