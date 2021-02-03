@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,6 +72,13 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/pantry"/>
+
+
             <TextView
                 android:id="@+id/helpPantryText"
                 android:layout_width="match_parent"
@@ -112,7 +120,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/grocery"/>
             <TextView
                 android:id="@+id/helpGroceriesText"
                 android:layout_width="match_parent"
@@ -153,6 +165,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/feedback"/>
+
             <TextView
                 android:id="@+id/helpFeedbackText"
                 android:layout_width="match_parent"
@@ -162,6 +180,12 @@
                 android:lineSpacingExtra="5dp"
                 android:padding="5dp"
                 android:text="@string/help_feedback" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ratings"/>
+
 
         </LinearLayout>
 
