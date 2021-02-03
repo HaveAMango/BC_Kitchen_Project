@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Broccoli Kitchen</string>
+    <string name="app_name">My Virtual Kitchen</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
@@ -96,7 +96,7 @@
         you search recipes using ingredients with the closest expiration dates.
     </string>
     <string name="help_grocery_list">
-        \tYou can add there items directly of copy them from Fridge or Pantry.
+        \tYou can add items to your Grocery List directly or choose to add them when removing from Fridge or Pantry.
         \n\tYou can check the items you have purchased and remove them from the shopping list.
     </string>
     <string name="help_settings">
