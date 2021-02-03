@@ -3,10 +3,14 @@ package com.example.bc_kitchen_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +39,8 @@ public class Pantry extends AppCompatActivity { //very similar to Fridge, look t
     private DatabaseReference database;
     private ArrayList<String> productsList = new ArrayList<>();
     ListView theListView;
+    ConstraintLayout pantryAct;
+    Button btn;
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Pantry.this, HomeActivity.class);
@@ -47,6 +53,9 @@ public class Pantry extends AppCompatActivity { //very similar to Fridge, look t
         setContentView(R.layout.activity_pantry);
         setTitle("Pantry");
         theListView = (ListView) findViewById(R.id.myListView);
+        pantryAct = findViewById(R.id.pantryActivity);
+        btn = findViewById(R.id.button);
+        loadSettings();
         database = FirebaseDatabase.getInstance().getReference("user-pantry").child(LoginRepository.activeUserId());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -173,5 +182,28 @@ public class Pantry extends AppCompatActivity { //very similar to Fridge, look t
 
     private void writeNewProduct(Product product) { //writes product to database
         database.child("user-groceries").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
+    }
+
+    //Loads Settings
+    private void loadSettings(){
+        //Color Schemes
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean cNight = sp.getBoolean("NIGHT", false);
+        //What colors in Night Mode
+        if (cNight) {
+            pantryAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+        }
+        //What colors when Night Mode is off
+        else {
+            pantryAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        loadSettings();
+        super.onResume();
     }
 }

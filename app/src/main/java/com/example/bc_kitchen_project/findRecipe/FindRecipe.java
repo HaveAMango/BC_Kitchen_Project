@@ -1,12 +1,17 @@
 package com.example.bc_kitchen_project.findRecipe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bc_kitchen_project.R;
@@ -16,14 +21,19 @@ public class FindRecipe extends AppCompatActivity implements View.OnClickListene
 
     Button findRecButton;
     TextInputLayout inputText;
+    ConstraintLayout findRecAct;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_recipe);
+        findRecAct = findViewById(R.id.findRecipeActivity);
         findRecButton = (Button) findViewById(R.id.findRecipeButton); //Initializing Button and InputField
         inputText = (TextInputLayout) findViewById(R.id.findRecipeInput);
         findRecButton.setOnClickListener(this);
+        tv = findViewById(R.id.findRecipeDescription);
+        loadSettings();
     }
 
     @Override
@@ -44,5 +54,30 @@ public class FindRecipe extends AppCompatActivity implements View.OnClickListene
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH); //Makes new Google search window
         search.putExtra(SearchManager.QUERY, (ingredients.trim() + " recipe")); //Makes search text/query
         startActivity(search);
+    }
+
+    //Loads Settings
+    private void loadSettings() {
+        //Color Schemes
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean cNight = sp.getBoolean("NIGHT", false);
+        //What colors in Night Mode
+        if (cNight) {
+            findRecAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            findRecButton.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.secondaryButtonNight, null));
+            tv.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+        }
+        //What colors when Night Mode is off
+        else {
+            findRecAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            findRecButton.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+            tv.setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryText, null));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        loadSettings();
+        super.onResume();
     }
 }

@@ -6,7 +6,8 @@
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="10dp"
     android:scrollbars="vertical"
-    tools:context=".Help">
+    tools:context=".Help"
+    android:id="@+id/helpActivity">
 
     <TextView
         android:id="@+id/helpHeadIntro"

@@ -100,7 +100,7 @@
         \n\tYou can check the items you have purchased and remove them from the shopping list.
     </string>
     <string name="help_settings">
-        \t You can change color scheme and Text Size in app by pressing buttons Color Scheme or Text Size and selecting from the list.
+        \t You can change application color scheme to Night Mode in order to save your eyes in darker environments.
     </string>
     <string name="help_feedback">
         \t You can leave your feedback about this app in this section.

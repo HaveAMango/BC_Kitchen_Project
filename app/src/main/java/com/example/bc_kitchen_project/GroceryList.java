@@ -3,12 +3,16 @@ package com.example.bc_kitchen_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -37,6 +41,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+//import kotlin.sequences.ConstrainedOnceSequence;
+
 import static android.R.layout.simple_list_item_1;
 import static android.R.layout.simple_list_item_checked;
 import static android.R.layout.simple_list_item_multiple_choice;
@@ -47,6 +53,8 @@ public class GroceryList extends AppCompatActivity {
     private DatabaseReference database;
     private ArrayList<String> productsList = new ArrayList<>();
     ListView theListView;
+    ConstraintLayout groceryAct;
+    Button btn1, btn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,10 @@ public class GroceryList extends AppCompatActivity {
 
         setContentView(R.layout.activity_grocery_list);
         theListView = (ListView) findViewById(R.id.myListView);
+        groceryAct = findViewById(R.id.groceryListActivity);
+        btn1 = findViewById(R.id.button3);
+        btn2 = findViewById(R.id.button4);
+        loadSettings();
         database = FirebaseDatabase.getInstance().getReference("user-groceries").child(LoginRepository.activeUserId());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -113,5 +125,30 @@ public class GroceryList extends AppCompatActivity {
 
     private void writeNewProduct(Product product) { //writes product to database
         database.child("user-groceries").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
+    }
+
+    //Loads Settings
+    private void loadSettings() {
+        //Color Schemes
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean cNight = sp.getBoolean("NIGHT", false);
+        //What colors in Night Mode
+        if (cNight) {
+            groceryAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            btn1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            btn2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+        }
+        //What colors when Night Mode is off
+        else {
+            groceryAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            btn1.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAccent, null));
+            btn2.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        loadSettings();
+        super.onResume();
     }
 }

@@ -3,10 +3,14 @@ package com.example.bc_kitchen_project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,6 +40,8 @@ public class Fridge extends AppCompatActivity {
     private DatabaseReference database;
     private ArrayList<String> productsList = new ArrayList<>();
     ListView theListView;
+    ConstraintLayout fridgeAct;
+    Button btn;
     @Override
     public void onBackPressed() { //makes sure, that is user presses "back" from Fridge, goes to main
         Intent intent = new Intent(Fridge.this, HomeActivity.class);
@@ -47,6 +53,9 @@ public class Fridge extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fridge);
         setTitle("Fridge");
+        fridgeAct = findViewById(R.id.fridgeActivity);
+        btn = findViewById(R.id.button);
+        loadSettings();
         theListView = (ListView) findViewById(R.id.myListView);
         database = FirebaseDatabase.getInstance().getReference("user-fridge").child(LoginRepository.activeUserId());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -175,6 +184,29 @@ public class Fridge extends AppCompatActivity {
     }
     private void writeNewProduct(Product product) { //writes product to database
         database.child("user-groceries").child(LoginRepository.activeUserId()).child(product.name).setValue(product);
+    }
+
+    //Loads Settings
+    private void loadSettings(){
+        //Color Schemes
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean cNight = sp.getBoolean("NIGHT", false);
+        //What colors in Night Mode
+        if (cNight) {
+            fridgeAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+        }
+        //What colors when Night Mode is off
+        else {
+            fridgeAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+            btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        loadSettings();
+        super.onResume();
     }
 
 }

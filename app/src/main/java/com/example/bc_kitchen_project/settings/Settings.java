@@ -33,11 +33,12 @@ public class Settings extends PreferenceActivity {
     private void loadSettings() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        /*boolean cNight = sp.getBoolean("NIGHT", false);
+        boolean cNight = sp.getBoolean("NIGHT", false);
         if (cNight) {
-            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            //TODO change text color to white
         } else {
-            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null));
+            getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
         }
 
         CheckBoxPreference cNightInstant = (CheckBoxPreference) findPreference("NIGHT");
@@ -46,19 +47,19 @@ public class Settings extends PreferenceActivity {
             public boolean onPreferenceChange(Preference preference, Object o) {
                 boolean yes = (boolean) o;
                 if (yes) {
-                    getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
-
+                    getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+                    //TODO change text color to white
                 } else {
                     getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
                 }
                 return true;
             }
-        });*/
+        });
 
 
-        ListPreference lp = (ListPreference) findPreference("COLORSCHEME");
+        /*ListPreference lp = (ListPreference) findPreference("COLORSCHEME");
         String color = sp.getString("COLORSCHEME", "false");
-        /*switch (color) {
+        switch (color) {
             case "1":
                 mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
                 break;
@@ -70,7 +71,7 @@ public class Settings extends PreferenceActivity {
                 break;
             default:
                 break;
-        }*/
+        }
         switch (color) {
             case "1":
                 setTheme(R.style.AppTheme);
@@ -112,10 +113,10 @@ public class Settings extends PreferenceActivity {
                 }
                 return true;
             }
-        });
+        });*/
 
-        ListPreference textSize = (ListPreference) findPreference("TEXTSIZE");
-        //FIXME next line can be used for changing text size (Maybe) or
+        /*ListPreference textSize = (ListPreference) findPreference("TEXTSIZE");
+        // Next line can be used for changing text size (Maybe) or
         // line1Size = a.getDimensionPixelSize(R.styleable.StackedTextView_line1_textSize, 0);
         // tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.txt_size));
         String txtSize = sp.getString("TEXTSIZE", "false");
@@ -162,7 +163,7 @@ public class Settings extends PreferenceActivity {
                 Log.d(TAG, "End value: " + value);
                 return true;
             }
-        });
+        });*/
 
     }
 
