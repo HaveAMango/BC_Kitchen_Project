@@ -6,7 +6,8 @@
             android:key="NIGHT"
             android:summaryOff="Night Mode deactivated"
             android:summaryOn="Night Mode activated"
-            android:title="Night mode" />
+            android:title="Night mode"
+            android:id="@+id/nightModeCheckbox"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

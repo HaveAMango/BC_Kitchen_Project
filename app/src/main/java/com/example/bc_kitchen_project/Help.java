@@ -79,11 +79,6 @@ public class Help extends AppCompatActivity {
                 tv.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
             //tv.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
         }
-        //What colors when Night Mode is off
-        else {
-            helpAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
-            //tv.setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryText, null));
-        }
     }
 
     @Override

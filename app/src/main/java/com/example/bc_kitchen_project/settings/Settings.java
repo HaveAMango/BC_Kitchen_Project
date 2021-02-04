@@ -23,6 +23,7 @@ import com.example.bc_kitchen_project.R;
 public class Settings extends PreferenceActivity {
     private static final String TAG = "Settingzzz";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class Settings extends PreferenceActivity {
         boolean cNight = sp.getBoolean("NIGHT", false);
         if (cNight) {
             getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+            setTheme(R.style.green);
             //TODO change text color to white
         } else {
             getListView().setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
