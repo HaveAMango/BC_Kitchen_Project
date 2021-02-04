@@ -1,16 +1,10 @@
 package com.example.bc_kitchen_project.data;
 
-import android.util.Log;
-
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginRepositoryTest {
 
@@ -55,7 +49,7 @@ public class LoginRepositoryTest {
     @Test
     public void testRegisterSuccess() {
         assert dataSource.size() == 1;
-        Result<LoggedInUser> result = repository.register("user", "qwerty");
+        Result<LoggedInUser> result = repository.register("user", "qwerty", "qwerty");
         assert result instanceof Result.Success;
 
         Result.Success<LoggedInUser> success = (Result.Success<LoggedInUser>) result;
@@ -65,13 +59,25 @@ public class LoginRepositoryTest {
     }
 
     @Test
-    public void testRegisterFailure() {
+    public void testRegisterFailureUserExists() {
         assert dataSource.size() == 1;
-        Result<LoggedInUser> result = repository.register("admin", "qwerty");
+        Result<LoggedInUser> result = repository.register("admin", "qwerty", "qwerty");
         assert result instanceof Result.Error;
 
         Result.Error<LoginException> error = (Result.Error<LoginException>) result;
-        assert error.getError().getErrorCode() == R.string.invalid_username;
+        assert error.getError().getErrorCode() == R.string.username_taken;
+
+        assert dataSource.size() == 1;
+    }
+
+    @Test
+    public void testRegisterFailureConfirmPassword() {
+        assert dataSource.size() == 1;
+        Result<LoggedInUser> result = repository.register("user", "qwerty", "wrong");
+        assert result instanceof Result.Error;
+
+        Result.Error<LoginException> error = (Result.Error<LoginException>) result;
+        assert error.getError().getErrorCode() == R.string.password_no_match;
 
         assert dataSource.size() == 1;
     }

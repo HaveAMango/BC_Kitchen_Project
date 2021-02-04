@@ -43,8 +43,8 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void register(String username, String password) {
-        Result<LoggedInUser> result = loginRepository.register(username, password);
+    public void register(String username, String password, String confirmPassword) {
+        Result<LoggedInUser> result = loginRepository.register(username, password, confirmPassword);
 
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
@@ -61,47 +61,14 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void registerDataChanged(String username, String password, String confirmPassword) {
-        Integer usernameError = null;
-        Integer passError = null;
-        Integer passConfirmError = null;
-
-        if (!isUserNameValid(username)) {
-            usernameError = R.string.invalid_username;
-        }
-
-        if (!isPasswordValid(password)) {
-            passError = R.string.invalid_password;
-        }
-
-        if (!passwordsMatch(password, confirmPassword)) {
-            passConfirmError = R.string.password_no_match;
-        }
+        Integer usernameError = Validation.validateUsername(username);
+        Integer passError = Validation.validatePassword(password);
+        Integer passConfirmError = password.equals(confirmPassword) ? null : R.string.password_no_match;
 
         if (usernameError == null && passError == null && passConfirmError == null) {
             loginFormState.setValue(new LoginFormState(true));
         } else {
             loginFormState.setValue(new LoginFormState(usernameError, passError, passConfirmError));
         }
-    }
-
-    private boolean passwordsMatch(String password, String confirmPassword) {
-        return password.equals(confirmPassword);
-    }
-
-    // A placeholder username validation check
-    private boolean isUserNameValid(String username) {
-        if (username == null) {
-            return false;
-        }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
-    }
-
-    // A placeholder password validation check
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 3;
     }
 }

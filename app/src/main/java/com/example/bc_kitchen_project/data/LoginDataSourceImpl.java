@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.bc_kitchen_project.MainActivity;
 import com.example.bc_kitchen_project.R;
 import com.example.bc_kitchen_project.data.model.LoggedInUser;
+import com.example.bc_kitchen_project.ui.login.Validation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,9 @@ public class LoginDataSourceImpl implements LoginDataSource {
 
     protected Map<String, String> userCache = new HashMap<>();
 
+    private final String TAG_LOGIN = "Login";
+    private final String TAG_REGISTER = "Register";
+
     private volatile static LoginDataSourceImpl instance;
 
     LoginDataSourceImpl() {
@@ -30,13 +34,13 @@ public class LoginDataSourceImpl implements LoginDataSource {
     }
 
     protected void initialize() {
-        Log.i("login", "Init DataSource");
+        Log.i(TAG_LOGIN, "Init DataSource");
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference reference = db.getReference("users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("login", "Users updated");
+                Log.i(TAG_LOGIN, "Users updated");
 
                 //fill cache
                 for (DataSnapshot user : snapshot.getChildren()) {
@@ -52,7 +56,7 @@ public class LoginDataSourceImpl implements LoginDataSource {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("login", "error: " + error);
+                Log.e(TAG_LOGIN, "error: " + error);
             }
         });
     }
@@ -67,24 +71,24 @@ public class LoginDataSourceImpl implements LoginDataSource {
 
     public Result<LoggedInUser> login(String username, String password) {
         if (!userCache.containsKey(username)) {
-            Log.e("login", "User not found:" + username);
+            Log.e(TAG_LOGIN, "User not found:" + username);
             return new Result.Error(new LoginException(R.string.login_failure_no_user));
         }
 
         String realPassword = userCache.get(username);
         if (!password.equals(realPassword)) {
-            Log.e("login", "Invalid password for user:" + username +
+            Log.e(TAG_LOGIN, "Invalid password for user:" + username +
                     " - Expected: " + realPassword + " actual: " + password);
             return new Result.Error(new LoginException(R.string.login_failure_invalid_password));
         }
 
-        Log.i("login", "Login successful: " + username);
+        Log.i(TAG_LOGIN, "Login successful: " + username);
         LoggedInUser user = new LoggedInUser(username, username);
         return new Result.Success<>(user);
     }
 
     protected void addUser(String username, String password) {
-        Log.i("register", "Register user: " + username);
+        Log.i(TAG_REGISTER, "Register user: " + username);
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference reference = db.getReference("users");
         DatabaseReference newUser = reference.push();
@@ -92,15 +96,33 @@ public class LoginDataSourceImpl implements LoginDataSource {
         newUser.child("password").setValue(password);
     }
 
-    public Result<LoggedInUser> register(String username, String password) {
+    public Result<LoggedInUser> register(String username, String password, String confirmPassword) {
+        //invalid username
+        Integer usernameError = Validation.validateUsername(username);
+        if (usernameError != null) {
+            Log.e(TAG_REGISTER, "Invalid username: " + username);
+            return new Result.Error(new LoginException(usernameError));
+        }
+
         if (userCache.containsKey(username)) {
-            Log.e("login", "Username already taken:" + username);
-            return new Result.Error(new LoginException(R.string.invalid_username));
+            Log.e(TAG_REGISTER, "Username already taken: " + username);
+            return new Result.Error(new LoginException(R.string.username_taken));
+        }
+
+        Integer passwordError = Validation.validatePassword(password);
+        if (passwordError != null) {
+            Log.e(TAG_REGISTER, "Invalid password: " + password);
+            return new Result.Error(new LoginException(passwordError));
+        }
+
+        if (!password.equals(confirmPassword)) {
+            Log.e(TAG_REGISTER, "Passwords do not match for: " + username);
+            return new Result.Error(new LoginException(R.string.password_no_match));
         }
 
         addUser(username, password);
 
-        Log.i("register", "Register successful: " + username);
+        Log.i(TAG_REGISTER, "Register successful: " + username);
         LoggedInUser user = new LoggedInUser(username, username);
         return new Result.Success<>(user);
     }

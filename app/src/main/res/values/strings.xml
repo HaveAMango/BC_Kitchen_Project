@@ -8,7 +8,8 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_username">Username must be alphanumeric and >3 characters</string>
+    <string name="username_taken">Username is already taken</string>
     <string name="invalid_password">Password must be >3 characters</string>
     <string name="password_no_match">Passwords do not match</string>
     <string name="login_failed">"Login failed"</string>
