@@ -39,6 +39,11 @@
         <item name="android:textColorPrimary">@color/purple_200</item>
     </style>
 
+    <style name="SettingsFragmentStyle">
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 
 
 
