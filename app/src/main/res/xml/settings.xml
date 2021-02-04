@@ -6,22 +6,8 @@
             android:key="NIGHT"
             android:summaryOff="Night Mode deactivated"
             android:summaryOn="Night Mode activated"
-            android:title="Night mode" />
+            android:title="Night mode"
+            android:id="@+id/nightModeCheckbox"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="Screen Orientation">
-        <ListPreference
-            android:defaultValue="false"
-            android:entries="@array/items_name"
-            android:entryValues="@array/items_value"
-            android:key="ORIENTATION"
-            android:title="Orientation" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Text Size">
-        <ListPreference android:defaultValue="false"
-            android:entries="@array/textSize"
-            android:entryValues="@array/textSizeValues"
-            android:key="TEXTSIZE"
-            android:title="Text Size"/>
 
-    </PreferenceCategory>
 </PreferenceScreen>

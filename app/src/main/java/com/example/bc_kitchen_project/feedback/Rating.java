@@ -1,5 +1,10 @@
 package com.example.bc_kitchen_project.feedback;
 
+import android.view.View;
+
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 public class Rating {
     private String name;
     private String comment;

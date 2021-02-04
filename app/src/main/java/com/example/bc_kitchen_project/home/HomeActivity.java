@@ -1,5 +1,6 @@
 package com.example.bc_kitchen_project.home;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +29,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private RelativeLayout mainAct;
     Intent intent;
-    private ArrayList<Button> buttons = new ArrayList<Button>();
+    private ArrayList<Button> mainButtons = new ArrayList<Button>();
+    private ArrayList<Button> secondaryButtons = new ArrayList<Button>();
     @Override
     public void onBackPressed() {
         finishAffinity();
@@ -48,13 +50,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         addButton(R.id.btn_logout);
 
         mainAct = findViewById(R.id.HomeActivity);
-        //loadSettings();
+        loadSettings();
     }
 
     private void addButton(int id) {
         Button btn = findViewById(id);
         btn.setOnClickListener(this);
-        buttons.add(btn);
+        checkButtonAndAddToList(btn);
+    }
+
+    private void checkButtonAndAddToList(Button btn) {
+        if (mainButtons.size() < 4) {
+            mainButtons.add(btn);
+        } else {
+            secondaryButtons.add(btn);
+        }
     }
 
     @Override
@@ -94,43 +104,44 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-    //LoadsSettings
-    private void loadSettings(){
+
+    //Loads Settings
+    private void loadSettings() {
         //Color Schemes
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean cNight = sp.getBoolean("NIGHT", false);
         //What colors in Night Mode
         if (cNight) {
-            mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
-            for(Button btn: buttons){
+            mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.backgroundNight, null));
+
+            for (Button btn : mainButtons) {
                 //Button Background and Text color
-                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.buttonNight, null));
+                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.mainButtonNight, null));
+                btn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.buttonTextNight, null));
+            }
+            for (Button btn : secondaryButtons) {
+                //Button Background and Text color
+                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.secondaryButtonNight, null));
                 btn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.buttonTextNight, null));
             }
         }
         //What colors when Night Mode is off
         else {
             mainAct.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
-            for(Button btn: buttons){
-                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.button, null));
+            for (Button btn : mainButtons) {
+                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null));
                 btn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.buttonText, null));
             }
-        }
-
-        //Screen orientation changes
-        String orient = sp.getString("ORIENTATION", "false");
-        if ("1".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
-        } else if ("2".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if ("3".equals(orient)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            for (Button btn : secondaryButtons) {
+                btn.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+                btn.setTextColor(ResourcesCompat.getColor(getResources(), R.color.buttonText, null));
+            }
         }
     }
 
     @Override
     protected void onResume() {
-        //loadSettings();
+        loadSettings();
         super.onResume();
     }
 }

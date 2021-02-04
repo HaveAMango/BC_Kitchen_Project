@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.WelcomeActivity">
+    tools:context=".ui.login.WelcomeActivity"
+    android:id="@+id/welocomeActivity">
 
     <Button
         android:id="@+id/button_sign_in"
