@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static void onLoginHandled() {
-        LoginRepository.getInstance().loadCachedUser();
-    }
-
     public static Context getContext() {
         return instance.getApplicationContext();
     }

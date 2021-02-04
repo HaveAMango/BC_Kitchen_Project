@@ -28,7 +28,9 @@ public class LoginRepository {
     // @see https://developer.android.com/training/articles/keystore
     private LoggedInUser user = null;
 
-    private boolean cacheSession;
+    private final boolean cacheSession;
+
+    private boolean loadedCacheOnce;
 
     // private constructor : singleton access
     LoginRepository(boolean cacheSession, LoginDataSource dataSource) {
@@ -64,6 +66,10 @@ public class LoginRepository {
 
     public void loadCachedUser() {
         if (!cacheSession) return;
+
+        if (loadedCacheOnce) return;
+
+        loadedCacheOnce = true;
 
         Log.i("user-cache", "Load user cache");
         if (userCacheExists()) {

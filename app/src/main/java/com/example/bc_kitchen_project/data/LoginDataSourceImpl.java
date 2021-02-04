@@ -33,20 +33,21 @@ public class LoginDataSourceImpl implements LoginDataSource {
         Log.i("login", "Init DataSource");
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference reference = db.getReference("users");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.i("login", "Users updated");
+
                 //fill cache
                 for (DataSnapshot user : snapshot.getChildren()) {
-                    String username = user.child("name").getValue().toString();
-                    String password = user.child("password").getValue().toString();
+                    String username = (String) user.child("name").getValue();
+                    String password = (String) user.child("password").getValue();
 
-                    Log.d("login", "Added user: " + username + "-" + password);
                     userCache.put(username, password);
                 }
 
                 //try to login using user cache now
-                MainActivity.onLoginHandled();
+                LoginRepository.getInstance().loadCachedUser();
             }
 
             @Override
